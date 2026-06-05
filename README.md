@@ -14,7 +14,7 @@ Configurable **MOS switch** behavioral models with Python and Verilog-A, followi
 | --- | --- |
 | **Switch types** | NMOS, PMOS, CMOS (TG), NMOS+dummy, bootstrapped (BS), BS+dummy |
 | **Non-idealities** | Signal-dependent Ron, thermal + flicker noise, charge injection, clock feedthrough |
-| **Engines** | Python (full); Verilog-A shells for Spectre/ngspice |
+| **Engines** | `python` (full), `ngspice` (behavioral SPICE, same Ron equations), `spectre` (Verilog-A) |
 | **Benches** | Ron sweep, noise spectrum, parasitics, cross-type comparison |
 
 ## Installation
@@ -38,9 +38,10 @@ python scripts/run_noise.py --switch-type bs --output-dir outputs/python/bs
 # Compare all six topologies
 python scripts/run_compare_switches.py
 
-# Run all benches (figures + summary REPORT.md)
-./scripts/run_all_simulations.sh
-# Open outputs/python/REPORT.md for the cross-type comparison and figure gallery
+# Run all engines (python + ngspice + spectre) and compare
+./scripts/run_all_simulations.sh --skip-missing
+# Per-engine: outputs/<engine>/REPORT.md
+# Cross-engine: outputs/REPORT.md
 ```
 
 ## Python API

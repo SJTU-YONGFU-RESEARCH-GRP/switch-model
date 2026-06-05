@@ -1,0 +1,89 @@
+
+Spectre (R) Circuit Simulator
+Version 24.1.0.167.isr2 64bit -- 28 Nov 2024
+Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved
+        worldwide. Cadence and Spectre are registered trademarks of Cadence
+        Design Systems, Inc. All others are the property of their respective
+        holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA
+        Security, Inc.
+
+User: yongfu   Host: river   HostID: 7F0100   PID: 2255990
+Memory  available: 355.6875 GB  physical: 405.0724 GB
+Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
+CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
+        Socket: Processors [Frequency] (Hyperthreaded Processor)
+        0:       0 [2899.7] ( 24 ),  1 [2899.7] ( 25 ),  2 [2899.7] ( 26 )
+                 3 [2899.7] ( 27 ),  4 [2899.7] ( 28 ),  5 [2899.7] ( 29 )
+                 6 [2899.7] ( 30 ),  7 [2899.7] ( 31 ),  8 [2899.7] ( 32 )
+                 9 [2899.7] ( 33 ), 10 [2899.7] ( 34 ), 11 [2899.7] ( 35 )
+        1:      12 [2799.7] ( 36 ), 13 [2799.7] ( 37 ), 14 [2799.7] ( 38 )
+                15 [2799.7] ( 39 ), 16 [2799.8] ( 40 ), 17 [2799.7] ( 41 )
+                18 [2799.7] ( 42 ), 19 [2799.7] ( 43 ), 20 [2799.8] ( 44 )
+                21 [2799.7] ( 45 ), 22 [2799.7] ( 46 ), 23 [2799.7] ( 47 )
+        
+System load averages (1min, 5min, 15min) : 117.3 %, 46.5 %, 20.2 %
+Hyperthreading is enabled
+
+
+Simulating
+        `/home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists/ron_sweep.scs'
+        on river at 5:48:26 PM, Fri Jun 5, 2026 (process id: 2255990).
+Current working directory:
+        /home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists
+Command line:
+    /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
+        /home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists/ron_sweep.scs
+        \
+        +log spectre_ron.log
+Licensing Information:
+[17:48:26.080353] Configured Lic search path (24.01-s002):
+        /eda/cadence/license.dat
+
+Licensing Information:
+[17:48:26.122515] Periodic Lic check successful
+
+Reading file: 
+        /home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists/ron_sweep.scs
+Reading file: 
+        /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/yongfu/proj/switch-model/veriloga/configurable_switch.va
+Reading file: 
+        /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading file: 
+        /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+
+Error found by spectre during AHDL read-in.
+    ERROR (VACOMP-2152):
+        "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line
+        128: Encountered the `ddt' analog operator embedded in a
+        conditionally-executed statement or in an expression. The software does
+        not support this use. Do not use the `ddt' analog operator in a
+        conditionally-executed statement or in an expression.
+    ERROR (VACOMP-2152):
+        "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line
+        130: Encountered the `ddt' analog operator embedded in a
+        conditionally-executed statement or in an expression. The software does
+        not support this use. Do not use the `ddt' analog operator in a
+        conditionally-executed statement or in an expression.
+
+Time for NDB Parsing: CPU = 284.439 ms, elapsed = 633.236 ms.
+Time accumulated: CPU = 410.129 ms, elapsed = 633.239 ms.
+Peak resident memory used = 193 Mbytes.
+
+Licensing Information:
+Lic Summary:
+[17:48:26.223915] Cdslmd servers:/eda/cadence/license.dat
+[17:48:26.748231] Feature usage summary:
+[17:48:26.748236] Virtuoso_Spectre
+
+
+Aggregate audit (5:48:26 PM, Fri Jun 5, 2026):
+Time used: CPU = 411 ms, elapsed = 634 ms, util. = 64.8%.
+Time spent in licensing: elapsed = 427 ms, percentage of total = 67.4%.
+Peak memory used = 194 Mbytes.
+Simulation started at: 5:48:26 PM, Fri Jun 5, 2026, ended at: 5:48:26 PM, Fri
+        Jun 5, 2026, with elapsed time (wall clock): 634 ms.
+spectre completes with 2 errors, 0 warnings, and 0 notices.
+spectre terminated prematurely due to fatal error.

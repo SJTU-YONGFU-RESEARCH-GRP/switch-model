@@ -1,0 +1,14 @@
+// NMOS switch with dummy (NS-D) — Zhou et al., NEWCAS 2021 Fig. 1(c).
+
+`include "configurable_switch.va"
+
+module configurable_nmos_dummy_switch(in, out, clk, vdd, vss);
+
+    inout in, out, clk, vdd, vss;
+    electrical in, out, clk, vdd, vss;
+
+    configurable_switch #(.SWITCH_KIND(3)) sw (
+        .in(in), .out(out), .clk(clk), .clk_bar(clk), .vdd(vdd), .vss(vss)
+    );
+
+endmodule

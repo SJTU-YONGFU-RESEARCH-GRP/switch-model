@@ -1,0 +1,14 @@
+// Bootstrapped NMOS switch with dummy — BS + NS-D topology.
+
+`include "configurable_switch.va"
+
+module configurable_bs_dummy_switch(in, out, clk, vdd, vss);
+
+    inout in, out, clk, vdd, vss;
+    electrical in, out, clk, vdd, vss;
+
+    configurable_switch #(.SWITCH_KIND(5)) sw (
+        .in(in), .out(out), .clk(clk), .clk_bar(clk), .vdd(vdd), .vss(vss)
+    );
+
+endmodule

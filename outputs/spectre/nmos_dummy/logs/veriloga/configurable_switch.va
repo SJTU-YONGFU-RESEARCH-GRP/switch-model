@@ -1,0 +1,155 @@
+// Configurable MOS switch — signal-dependent Ron, noise, parasitic caps.
+//
+// Reference: Zhou et al., "Flicker Noise Analysis on Chopper Amplifier",
+// IEEE NEWCAS 2021 (Fig. 3 switch model).
+//
+// Non-idealities:
+//   (1) signal-dependent on-resistance (NMOS/PMOS/CMOS) or constant Ron (BS)
+//   (2) thermal + Coram-corrected flicker noise on channel
+//   (3) charge injection via Cgs, Cgd, Cp1, Cp2
+//   (4) clock feedthrough via Cgd overlap
+//
+// SWITCH_KIND: 0=NMOS, 1=PMOS, 2=CMOS(TG), 3=NMOS_DUMMY, 4=BS, 5=BS_DUMMY
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+(* compact_module *)
+module configurable_switch(in, out, clk, clk_bar, vdd, vss);
+
+    inout in, out, clk, clk_bar, vdd, vss;
+    electrical in, out, clk, clk_bar, vdd, vss;
+
+    parameter integer SWITCH_KIND = 0 from [0:5];
+    parameter real VTH_N_V = 0.4;
+    parameter real VTH_P_V = -0.4;
+    parameter real K_N = 2.0e-5;
+    parameter real K_P = 1.5e-5;
+    parameter real RATIO = 10.0;
+    parameter real RON_BS_OHM = 200.0;
+    parameter real ROFF_OHM = 1.0e12;
+    parameter real VDD_V = 1.8;
+    parameter real VCLK_HIGH_V = 1.8;
+    parameter real VCLK_LOW_V = 0.0;
+    parameter real CGS_F = 25.0e-15;
+    parameter real CGD_F = 25.0e-15;
+    parameter real CP1_F = 25.0e-15;
+    parameter real CP2_F = 25.0e-15;
+    parameter real CGS_DUMMY_F = 25.0e-15;
+    parameter real CGD_DUMMY_F = 25.0e-15;
+    parameter real DUMMY_CHARGE_SPLIT = 0.5;
+    parameter real C_LOAD_F = 1.0e-12;
+    parameter real EN_WHITE_V_PER_SQRT_HZ = 0.0;
+    parameter real EN_FLICKER_1HZ_V_PER_SQRT_HZ = 50.0e-9;
+    parameter real EN_FLICKER_EF = 1.0;
+    parameter real KF = 1.0e-24;
+    parameter real AF = 1.0;
+    parameter real ENABLE_NOISE = 1.0;
+
+    real ron;
+    real r_n;
+    real r_p;
+    real vgs_n;
+    real vgs_p;
+    real v_clk;
+    real v_clk_bar;
+    real ir;
+    real pn_flicker;
+    real cgs_tot;
+    real cgd_tot;
+    real dv_clk;
+    integer sw_on;
+
+    analog function integer sign_r;
+        input arg;
+        real arg;
+        sign_r = (arg >= 0.0) ? 1 : -1;
+    endfunction
+
+    analog begin
+        v_clk = V(clk);
+        v_clk_bar = (SWITCH_KIND == 2) ? V(clk_bar) : (VDD_V - v_clk);
+
+        // On-resistance selection (paper Fig. 3).
+        sw_on = 0;
+        ron = ROFF_OHM;
+        if (SWITCH_KIND == 4 || SWITCH_KIND == 5) begin
+            if (v_clk > VTH_N_V) begin
+                sw_on = 1;
+                ron = RON_BS_OHM;
+            end
+        end else if (SWITCH_KIND == 1) begin
+            vgs_p = v_clk - V(in);
+            if (vgs_p < VTH_P_V) begin
+                vgs_p = VTH_P_V - vgs_p;
+                if (vgs_p > 1.0e-6) begin
+                    sw_on = 1;
+                    ron = 1.0 / (K_P * RATIO * vgs_p);
+                end
+            end
+        end else if (SWITCH_KIND == 2) begin
+            vgs_n = v_clk - V(in) - VTH_N_V;
+            vgs_p = v_clk_bar - V(in);
+            r_n = ROFF_OHM;
+            r_p = ROFF_OHM;
+            if (vgs_n > 1.0e-6 && v_clk > VTH_N_V)
+                r_n = 1.0 / (K_N * RATIO * vgs_n);
+            if (vgs_p < VTH_P_V) begin
+                vgs_p = VTH_P_V - vgs_p;
+                if (vgs_p > 1.0e-6)
+                    r_p = 1.0 / (K_P * RATIO * vgs_p);
+            end
+            if (r_n < ROFF_OHM * 0.5 || r_p < ROFF_OHM * 0.5) begin
+                sw_on = 1;
+                ron = (r_n * r_p) / (r_n + r_p);
+            end
+        end else begin
+            vgs_n = v_clk - V(in) - VTH_N_V;
+            if (vgs_n > 1.0e-6 && v_clk > VTH_N_V) begin
+                sw_on = 1;
+                ron = 1.0 / (K_N * RATIO * vgs_n);
+            end
+        end
+
+        // Channel conductance (V = I*Ron when on, high-Z when off).
+        if (sw_on)
+            V(in, out) <+ ron * I(in, out);
+        else
+            V(in, out) <+ ROFF_OHM * I(in, out);
+
+        // Parasitic capacitors (charge injection + clock feedthrough).
+        cgs_tot = CGS_F;
+        cgd_tot = CGD_F;
+        if (SWITCH_KIND == 3 || SWITCH_KIND == 5) begin
+            cgs_tot = cgs_tot + CGS_DUMMY_F;
+            cgd_tot = cgd_tot + CGD_DUMMY_F;
+        end
+        if (cgs_tot > 0.0)
+            I(in) <+ cgs_tot * ddt(V(clk));
+        if (cgd_tot > 0.0)
+            I(out) <+ cgd_tot * ddt(V(clk));
+        if (CP1_F > 0.0)
+            I(in) <+ CP1_F * ddt(V(in));
+        if (CP2_F > 0.0)
+            I(out) <+ CP2_F * ddt(V(out));
+
+        // Channel noise (Coram-corrected flicker + thermal, paper Fig. 3).
+        if (ENABLE_NOISE != 0.0 && sw_on && ron > 0.0) begin
+            ir = V(in, out) / ron;
+            pn_flicker = KF * pow(abs(ir), AF);
+            if (EN_WHITE_V_PER_SQRT_HZ > 0.0)
+                I(in, out) <+ white_noise(
+                    4.0 * `P_K * $temperature / (EN_WHITE_V_PER_SQRT_HZ * EN_WHITE_V_PER_SQRT_HZ / (4.0 * `P_K * $temperature)),
+                    "thermal");
+            else
+                I(in, out) <+ white_noise(4.0 * `P_K * $temperature / ron, "thermal");
+            if (EN_FLICKER_1HZ_V_PER_SQRT_HZ > 0.0)
+                I(in, out) <+ flicker_noise(
+                    EN_FLICKER_1HZ_V_PER_SQRT_HZ * EN_FLICKER_1HZ_V_PER_SQRT_HZ / (ron * ron),
+                    EN_FLICKER_EF, "flicker");
+            else if (KF > 0.0)
+                I(in, out) <+ flicker_noise(sign_r(ir) * pn_flicker, EN_FLICKER_EF, "flicker");
+        end
+    end
+
+endmodule

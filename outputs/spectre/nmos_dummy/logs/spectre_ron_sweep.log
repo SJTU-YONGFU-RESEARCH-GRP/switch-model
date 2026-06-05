@@ -1,0 +1,88 @@
+
+Spectre (R) Circuit Simulator
+Version 24.1.0.167.isr2 64bit -- 28 Nov 2024
+Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved
+        worldwide. Cadence and Spectre are registered trademarks of Cadence
+        Design Systems, Inc. All others are the property of their respective
+        holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA
+        Security, Inc.
+
+User: yongfu   Host: river   HostID: 7F0100   PID: 2257460
+Memory  available: 355.5174 GB  physical: 405.0724 GB
+Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
+CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
+All processors running at 2899.7 MHz
+        Socket: Processors (Hyperthreaded Processor)
+        0:       0 ( 24 ),  1 ( 25 ),  2 ( 26 ),  3 ( 27 ),  4 ( 28 )
+                 5 ( 29 ),  6 ( 30 ),  7 ( 31 ),  8 ( 32 ),  9 ( 33 )
+                10 ( 34 ), 11 ( 35 )
+        1:      12 ( 36 ), 13 ( 37 ), 14 ( 38 ), 15 ( 39 ), 16 ( 40 )
+                17 ( 41 ), 18 ( 42 ), 19 ( 43 ), 20 ( 44 ), 21 ( 45 )
+                22 ( 46 ), 23 ( 47 )
+        
+System load averages (1min, 5min, 15min) : 111.8 %, 47.6 %, 20.8 %
+Hyperthreading is enabled
+
+
+Simulating
+        `/home/yongfu/proj/switch-model/outputs/spectre/nmos_dummy/logs/netlists/ron_sweep.scs'
+        on river at 5:48:35 PM, Fri Jun 5, 2026 (process id: 2257460).
+Current working directory:
+        /home/yongfu/proj/switch-model/outputs/spectre/nmos_dummy/logs/netlists
+Command line:
+    /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
+        /home/yongfu/proj/switch-model/outputs/spectre/nmos_dummy/logs/netlists/ron_sweep.scs
+        \
+        +log spectre_ron.log
+Licensing Information:
+[17:48:35.080353] Configured Lic search path (24.01-s002):
+        /eda/cadence/license.dat
+
+Licensing Information:
+[17:48:36.233041] Periodic Lic check successful
+
+Reading file: 
+        /home/yongfu/proj/switch-model/outputs/spectre/nmos_dummy/logs/netlists/ron_sweep.scs
+Reading file: 
+        /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/yongfu/proj/switch-model/veriloga/configurable_switch.va
+Reading file: 
+        /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading file: 
+        /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+
+Error found by spectre during AHDL read-in.
+    ERROR (VACOMP-2152):
+        "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line
+        128: Encountered the `ddt' analog operator embedded in a
+        conditionally-executed statement or in an expression. The software does
+        not support this use. Do not use the `ddt' analog operator in a
+        conditionally-executed statement or in an expression.
+    ERROR (VACOMP-2152):
+        "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line
+        130: Encountered the `ddt' analog operator embedded in a
+        conditionally-executed statement or in an expression. The software does
+        not support this use. Do not use the `ddt' analog operator in a
+        conditionally-executed statement or in an expression.
+
+Time for NDB Parsing: CPU = 243.333 ms, elapsed = 814.396 ms.
+Time accumulated: CPU = 372.366 ms, elapsed = 814.399 ms.
+Peak resident memory used = 193 Mbytes.
+
+Licensing Information:
+Lic Summary:
+[17:48:36.372090] Cdslmd servers:/eda/cadence/license.dat
+[17:48:36.372134] Feature usage summary:
+[17:48:36.372135] Virtuoso_Spectre
+
+
+Aggregate audit (5:48:36 PM, Fri Jun 5, 2026):
+Time used: CPU = 382 ms, elapsed = 827 ms, util. = 46.2%.
+Time spent in licensing: elapsed = 463 ms, percentage of total = 55.9%.
+Peak memory used = 194 Mbytes.
+Simulation started at: 5:48:35 PM, Fri Jun 5, 2026, ended at: 5:48:36 PM, Fri
+        Jun 5, 2026, with elapsed time (wall clock): 827 ms.
+spectre completes with 2 errors, 0 warnings, and 0 notices.
+spectre terminated prematurely due to fatal error.

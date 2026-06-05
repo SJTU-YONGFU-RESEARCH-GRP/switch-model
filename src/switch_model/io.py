@@ -50,6 +50,19 @@ def write_ron_csv(path: Path, vin_v: NDArray[np.float64], ron_ohm: NDArray[np.fl
     np.savetxt(path, data, delimiter=",", header=",".join(RON_COLUMNS), comments="")
 
 
+def read_ngspice_dc_wrdata(path: Path) -> dict[str, NDArray[np.float64]]:
+    """Read ngspice ``wrdata`` from DC analysis (vin, ron columns)."""
+    table = np.loadtxt(path)
+    if table.ndim == 1:
+        table = table.reshape(1, -1)
+    if table.shape[1] < 2:
+        msg = f"Expected >= 2 columns in DC wrdata, got {table.shape[1]}."
+        raise ValueError(msg)
+    vin = table[:, 0].astype(np.float64)
+    ron = np.abs(table[:, -1].astype(np.float64))
+    return {"vin_v": vin, "ron_ohm": ron}
+
+
 def write_noise_csv(
     path: Path,
     frequency_hz: NDArray[np.float64],

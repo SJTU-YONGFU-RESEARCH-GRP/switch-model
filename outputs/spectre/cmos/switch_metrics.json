@@ -1,0 +1,29 @@
+{
+  "switch_type": "cmos",
+  "fch_hz": 2000.0,
+  "parasitics": {
+    "cgs_f": 2.5e-14,
+    "cgd_f": 2.5e-14,
+    "cp1_f": 2.5e-14,
+    "cp2_f": 2.5e-14
+  },
+  "ron": {
+    "ron_min_ohm": 3571.4285714285716,
+    "ron_max_ohm": 6657.608695652173,
+    "ron_at_vcm_ohm": 5684.454756380511,
+    "linearity_error_pct": 1543.0900621118008
+  },
+  "noise": {
+    "flicker_corner_hz": 26.406663339728887,
+    "noise_at_1hz_v_per_sqrt_hz": 5.093793354942576e-08
+  },
+  "charge_injection": {
+    "q_inj_coulomb": 9.000000000000001e-14,
+    "v_inj_v": 0.08571428571428573,
+    "dummy_reduction_pct": 0.0
+  },
+  "clock_feedthrough": {
+    "v_feedthrough_v": 0.041860465116279076,
+    "attenuation_db": -32.66936911159173
+  }
+}

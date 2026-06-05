@@ -1,6 +1,6 @@
 # switch-model — simulation summary
 
-- **Generated:** 2026-06-05 09:37:26 UTC
+- **Generated:** 2026-06-05 09:47:53 UTC
 - **Output root:** `python/`
 
 Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWCAS 2021.

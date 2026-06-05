@@ -1,0 +1,176 @@
+{
+  "nmos": {
+    "switch_type": "nmos",
+    "fch_hz": 2000.0,
+    "parasitics": {
+      "cgs_f": 2.5e-14,
+      "cgd_f": 2.5e-14,
+      "cp1_f": 2.5e-14,
+      "cp2_f": 2.5e-14
+    },
+    "ron": {
+      "ron_min_ohm": 3571.4285714285716,
+      "ron_max_ohm": 1225000.0000000184,
+      "ron_at_vcm_ohm": 9645.669291338585,
+      "linearity_error_pct": 610714.2857142949
+    },
+    "noise": {
+      "flicker_corner_hz": 15.089521908416499,
+      "noise_at_1hz_v_per_sqrt_hz": 5.1630203176048024e-08
+    },
+    "charge_injection": {
+      "q_inj_coulomb": 9.000000000000001e-14,
+      "v_inj_v": 0.08571428571428573,
+      "dummy_reduction_pct": 0.0
+    },
+    "clock_feedthrough": {
+      "v_feedthrough_v": 0.041860465116279076,
+      "attenuation_db": -32.66936911159173
+    }
+  },
+  "pmos": {
+    "switch_type": "pmos",
+    "fch_hz": 2000.0,
+    "parasitics": {
+      "cgs_f": 2.5e-14,
+      "cgd_f": 2.5e-14,
+      "cp1_f": 2.5e-14,
+      "cp2_f": 2.5e-14
+    },
+    "ron": {
+      "ron_min_ohm": 1000000000000.0,
+      "ron_max_ohm": 1000000000000.0,
+      "ron_at_vcm_ohm": 1000000000000.0,
+      "linearity_error_pct": 0.0
+    },
+    "noise": {
+      "flicker_corner_hz": NaN,
+      "noise_at_1hz_v_per_sqrt_hz": 5e-08
+    },
+    "charge_injection": {
+      "q_inj_coulomb": 9.000000000000001e-14,
+      "v_inj_v": 0.08571428571428573,
+      "dummy_reduction_pct": 0.0
+    },
+    "clock_feedthrough": {
+      "v_feedthrough_v": 0.041860465116279076,
+      "attenuation_db": -32.66936911159173
+    }
+  },
+  "cmos": {
+    "switch_type": "cmos",
+    "fch_hz": 2000.0,
+    "parasitics": {
+      "cgs_f": 2.5e-14,
+      "cgd_f": 2.5e-14,
+      "cp1_f": 2.5e-14,
+      "cp2_f": 2.5e-14
+    },
+    "ron": {
+      "ron_min_ohm": 3571.4285714285716,
+      "ron_max_ohm": 6657.608695652173,
+      "ron_at_vcm_ohm": 5684.454756380511,
+      "linearity_error_pct": 1543.0900621118008
+    },
+    "noise": {
+      "flicker_corner_hz": 26.40666333972888,
+      "noise_at_1hz_v_per_sqrt_hz": 5.0937933549425755e-08
+    },
+    "charge_injection": {
+      "q_inj_coulomb": 9.000000000000001e-14,
+      "v_inj_v": 0.08571428571428573,
+      "dummy_reduction_pct": 0.0
+    },
+    "clock_feedthrough": {
+      "v_feedthrough_v": 0.041860465116279076,
+      "attenuation_db": -32.66936911159173
+    }
+  },
+  "nmos_dummy": {
+    "switch_type": "nmos_dummy",
+    "fch_hz": 2000.0,
+    "parasitics": {
+      "cgs_f": 5e-14,
+      "cgd_f": 5e-14,
+      "cp1_f": 5e-14,
+      "cp2_f": 5e-14
+    },
+    "ron": {
+      "ron_min_ohm": 3571.4285714285716,
+      "ron_max_ohm": 1225000.0000000184,
+      "ron_at_vcm_ohm": 9645.669291338585,
+      "linearity_error_pct": 610714.2857142949
+    },
+    "noise": {
+      "flicker_corner_hz": 15.089521908416499,
+      "noise_at_1hz_v_per_sqrt_hz": 5.1630203176048024e-08
+    },
+    "charge_injection": {
+      "q_inj_coulomb": 4.5000000000000004e-14,
+      "v_inj_v": 0.042857142857142864,
+      "dummy_reduction_pct": 50.0
+    },
+    "clock_feedthrough": {
+      "v_feedthrough_v": 0.0782608695652174,
+      "attenuation_db": -27.234556720351858
+    }
+  },
+  "bs": {
+    "switch_type": "bs",
+    "fch_hz": 2000.0,
+    "parasitics": {
+      "cgs_f": 2.5e-14,
+      "cgd_f": 2.5e-14,
+      "cp1_f": 2.5e-14,
+      "cp2_f": 2.5e-14
+    },
+    "ron": {
+      "ron_min_ohm": 200.0,
+      "ron_max_ohm": 200.0,
+      "ron_at_vcm_ohm": 200.0,
+      "linearity_error_pct": 0.0
+    },
+    "noise": {
+      "flicker_corner_hz": 754.4760954208249,
+      "noise_at_1hz_v_per_sqrt_hz": 5.0033124603606354e-08
+    },
+    "charge_injection": {
+      "q_inj_coulomb": 9.000000000000001e-14,
+      "v_inj_v": 0.08571428571428573,
+      "dummy_reduction_pct": 0.0
+    },
+    "clock_feedthrough": {
+      "v_feedthrough_v": 0.041860465116279076,
+      "attenuation_db": -32.66936911159173
+    }
+  },
+  "bs_dummy": {
+    "switch_type": "bs_dummy",
+    "fch_hz": 2000.0,
+    "parasitics": {
+      "cgs_f": 5e-14,
+      "cgd_f": 5e-14,
+      "cp1_f": 5e-14,
+      "cp2_f": 5e-14
+    },
+    "ron": {
+      "ron_min_ohm": 200.0,
+      "ron_max_ohm": 200.0,
+      "ron_at_vcm_ohm": 200.0,
+      "linearity_error_pct": 0.0
+    },
+    "noise": {
+      "flicker_corner_hz": 754.4760954208249,
+      "noise_at_1hz_v_per_sqrt_hz": 5.0033124603606354e-08
+    },
+    "charge_injection": {
+      "q_inj_coulomb": 4.5000000000000004e-14,
+      "v_inj_v": 0.042857142857142864,
+      "dummy_reduction_pct": 50.0
+    },
+    "clock_feedthrough": {
+      "v_feedthrough_v": 0.0782608695652174,
+      "attenuation_db": -27.234556720351858
+    }
+  }
+}

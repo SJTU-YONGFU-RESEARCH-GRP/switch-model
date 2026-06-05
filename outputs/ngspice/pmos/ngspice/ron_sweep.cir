@@ -1,0 +1,26 @@
+* Ron DC sweep — ngspice behavioral macromodel (same equations as Python / VA).
+* Reference: Zhou et al., NEWCAS 2021.
+
+.title switch_model_ngspice_ron_sweep
+
+.param vclk_v=0
+.param vclk_bar_v=1.8
+.param vin_start_v=0
+.param vin_stop_v=1.8
+.param vin_step_v=0.0367346938776
+
+Vclk clk 0 DC {vclk_v}
+Vclkb clkbar 0 DC {vclk_bar_v}
+Vin in 0 DC 0.9
+
+* Probe outputs Ron(in) directly from macromodel equations.
+Bprobe 0 probe V = { abs(1 / ((V(clk)-V(in)<-0.4)*(1.5e-05*10.0*max(-0.4-(V(clk)-V(in)),1e-9)) + (V(clk)-V(in)>=-0.4)*1e-12)) }
+
+.dc Vin {vin_start_v} {vin_stop_v} {vin_step_v}
+.control
+run
+set wr_singlescale
+wrdata ron_sweep.raw v(in) v(probe)
+.endc
+
+.end

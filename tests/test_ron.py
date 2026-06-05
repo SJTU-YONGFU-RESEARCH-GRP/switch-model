@@ -29,10 +29,13 @@ def test_bs_ron_is_constant() -> None:
 
 def test_cmos_ron_lower_than_nmos_alone() -> None:
     """Transmission gate Ron should be below NMOS-only at mid-rail."""
-    cfg = SwitchConfig()
+    from switch_model.netlist import drive_voltages
+
+    cfg = SwitchConfig(switch_type=SwitchType.CMOS)
+    vclk, _ = drive_voltages(cfg)
     v = 0.9
-    r_n = switch_ron(v, cfg.vclk_high_v, replace(cfg, switch_type=SwitchType.NMOS))
-    r_tg = cmos_ron(v, cfg.vclk_high_v, cfg)
+    r_n = switch_ron(v, vclk, replace(cfg, switch_type=SwitchType.NMOS))
+    r_tg = cmos_ron(v, vclk, cfg)
     assert r_tg < r_n
 
 

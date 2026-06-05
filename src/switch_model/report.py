@@ -246,3 +246,67 @@ def write_summary_report(output_root: Path) -> Path | None:
     path = output_root / "REPORT.md"
     path.write_text("\n".join(lines), encoding="utf-8")
     return path
+
+
+def write_engine_comparison_report(
+    output_root: Path,
+    result: object,
+    *,
+    engines: tuple[str, ...],
+) -> Path:
+    """Write top-level cross-engine ``REPORT.md`` under ``output_root``."""
+    from switch_model.compare import CompareResult
+
+    if not isinstance(result, CompareResult):
+        msg = "result must be CompareResult"
+        raise TypeError(msg)
+
+    lines = [
+        "# switch-model — multi-engine comparison",
+        "",
+        f"- **Generated:** {_utc_timestamp()}",
+        f"- **Engines:** {', '.join(engines)}",
+        "",
+        "Peer engines implement the same Ron equations (see `docs/MODEL.md`):",
+        "",
+        "| Engine | Implementation |",
+        "| --- | --- |",
+        "| `python` | Python macromodel |",
+        "| `ngspice` | Behavioral SPICE (B-source, same equations) |",
+        "| `spectre` | Verilog-A `configurable_switch.va` |",
+        "",
+        "## Per-engine summaries",
+        "",
+    ]
+    for engine in engines:
+        engine_report = output_root / engine / "REPORT.md"
+        if engine_report.is_file():
+            lines.append(f"- [{engine}]({engine}/REPORT.md)")
+
+    lines.extend(
+        [
+            "",
+            "## Metric spread",
+            "",
+            "| Switch | Metric | Spread % | Tol % | OK |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    for row in result.rows:
+        lines.append(
+            f"| `{row['switch_type']}` | `{row['metric']}` | "
+            f"{row['spread_pct']:.2f} | {row['tolerance_pct']:.1f} | "
+            f"{'yes' if row['passed'] else '**NO**'} |"
+        )
+    lines.extend(
+        [
+            "",
+            f"**Overall:** {'PASS' if result.passed else 'FAIL'}",
+            "",
+            "Regenerate: `python scripts/compare_engines.py --output-root outputs`",
+            "",
+        ]
+    )
+    path = output_root / "REPORT.md"
+    path.write_text("\n".join(lines), encoding="utf-8")
+    return path

@@ -70,6 +70,27 @@ def add_noise_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--af", type=float, default=1.0, help="Coram AF exponent.")
 
 
+def add_simulator_args(parser: argparse.ArgumentParser) -> None:
+    """Register mutually exclusive simulator selection arguments."""
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--simulator",
+        choices=("python", "ngspice", "spectre"),
+        default="python",
+        help="Simulation engine (default: python).",
+    )
+
+
+def resolve_engine_label(simulator: str) -> str:
+    """Return a human-readable engine label."""
+    labels = {
+        "python": "Python macromodel",
+        "ngspice": "ngspice behavioral SPICE",
+        "spectre": "Cadence Spectre Verilog-A",
+    }
+    return labels.get(simulator, simulator)
+
+
 def add_output_args(parser: argparse.ArgumentParser) -> None:
     """Register output directory argument."""
     parser.add_argument(

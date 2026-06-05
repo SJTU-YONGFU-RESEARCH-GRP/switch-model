@@ -8,6 +8,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from switch_model.config import SwitchConfig, SwitchNoiseConfig
+from switch_model.netlist import drive_voltages
 from switch_model.ron import switch_ron
 
 _K_BOLTZMANN = 1.380649e-23
@@ -68,7 +69,9 @@ def channel_noise_density(
     noise = cfg.noise
     if not noise.enable_noise:
         return np.zeros_like(frequency_hz, dtype=np.float64)
-    clk = cfg.vclk_high_v if vclk_v is None else vclk_v
+    clk, _ = drive_voltages(cfg)
+    if vclk_v is not None:
+        clk = vclk_v
     ron = switch_ron(v_in, clk, cfg)
     current = channel_current_a(v_in, v_out, ron)
     thermal = thermal_voltage_density(ron, noise)
@@ -79,7 +82,8 @@ def channel_noise_density(
 def flicker_corner_hz(cfg: SwitchConfig, *, v_in: float = 0.9, v_out: float = 0.9) -> float:
     """Return flicker corner where thermal and flicker densities are equal."""
     noise = cfg.noise
-    ron = switch_ron(v_in, cfg.vclk_high_v, cfg)
+    clk, _ = drive_voltages(cfg)
+    ron = switch_ron(v_in, clk, cfg)
     current = channel_current_a(v_in, v_out, ron)
     white = thermal_voltage_density(ron, noise)
     en_1hz = math.sqrt(flicker_power_at_1hz(noise, current))

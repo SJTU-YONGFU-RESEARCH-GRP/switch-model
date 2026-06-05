@@ -1,0 +1,71 @@
+
+Spectre (R) Circuit Simulator
+Version 24.1.0.167.isr2 64bit -- 28 Nov 2024
+Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: yongfu   Host: river   HostID: 7F0100   PID: 2256921
+Memory  available: 355.3707 GB  physical: 405.0724 GB
+Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
+CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
+        Socket: Processors [Frequency] (Hyperthreaded Processor)
+        0:       0 [2799.7] ( 24 ),  1 [2799.7] ( 25 ),  2 [2799.7] ( 26 )
+                 3 [2799.7] ( 27 ),  4 [2799.7] ( 28 ),  5 [2799.7] ( 29 )
+                 6 [2799.7] ( 30 ),  7 [2799.7] ( 31 ),  8 [2799.7] ( 32 )
+                 9 [2799.7] ( 33 ), 10 [2799.8] ( 34 ), 11 [2799.7] ( 35 )
+        1:      12 [2899.7] ( 36 ), 13 [2899.7] ( 37 ), 14 [2899.7] ( 38 )
+                15 [2899.7] ( 39 ), 16 [2899.7] ( 40 ), 17 [2899.7] ( 41 )
+                18 [2899.8] ( 42 ), 19 [2899.7] ( 43 ), 20 [2899.7] ( 44 )
+                21 [2899.7] ( 45 ), 22 [2801.7] ( 46 ), 23 [2801.7] ( 47 )
+        
+System load averages (1min, 5min, 15min) : 109.4 %, 46.0 %, 20.2 %
+Hyperthreading is enabled
+
+
+Simulating `/home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists/ron_sweep.scs' on river at 5:48:30 PM, Fri Jun 5, 2026 (process id: 2256921).
+Current working directory: /home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists
+Command line:
+    /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
+        /home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists/ron_sweep.scs  \
+        +log spectre_ron.log
+
+Licensing Information:
+[17:48:30.080313] Configured Lic search path (24.01-s002): /eda/cadence/license.dat
+
+Licensing Information:
+[17:48:30.075809] Periodic Lic check successful
+
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_I_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists/ron_sweep.scs
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/yongfu/proj/switch-model/veriloga/configurable_switch.va
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+
+Error found by spectre during AHDL read-in.
+    ERROR (VACOMP-2152): "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line 128: Encountered the `ddt' analog operator embedded in a conditionally-executed statement or in an expression. The software does not support this use. Do not use the `ddt' analog operator in a conditionally-executed statement or in an expression.
+    ERROR (VACOMP-2152): "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line 130: Encountered the `ddt' analog operator embedded in a conditionally-executed statement or in an expression. The software does not support this use. Do not use the `ddt' analog operator in a conditionally-executed statement or in an expression.
+
+Time for NDB Parsing: CPU = 262.198 ms, elapsed = 720.038 ms.
+Time accumulated: CPU = 363.57 ms, elapsed = 720.04 ms.
+Peak resident memory used = 192 Mbytes.
+
+Licensing Information:
+Lic Summary:
+[17:48:30.208435] Cdslmd servers:/eda/cadence/license.dat
+[17:48:30.732764] Feature usage summary:
+[17:48:30.732765] Virtuoso_Spectre
+
+
+Aggregate audit (5:48:30 PM, Fri Jun 5, 2026):
+Time used: CPU = 378 ms, elapsed = 734 ms, util. = 51.6%.
+Time spent in licensing: elapsed = 422 ms, percentage of total = 57.5%.
+Peak memory used = 193 Mbytes.
+Simulation started at: 5:48:30 PM, Fri Jun 5, 2026, ended at: 5:48:30 PM, Fri Jun 5, 2026, with elapsed time (wall clock): 734 ms.
+spectre completes with 2 errors, 0 warnings, and 0 notices.
+spectre terminated prematurely due to fatal error.

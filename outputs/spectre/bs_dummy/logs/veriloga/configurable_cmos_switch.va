@@ -1,0 +1,14 @@
+// CMOS transmission gate (TG) — Zhou et al., NEWCAS 2021 Fig. 1(d).
+
+`include "configurable_switch.va"
+
+module configurable_cmos_switch(in, out, clk, clk_bar, vdd, vss);
+
+    inout in, out, clk, clk_bar, vdd, vss;
+    electrical in, out, clk, clk_bar, vdd, vss;
+
+    configurable_switch #(.SWITCH_KIND(2)) sw (
+        .in(in), .out(out), .clk(clk), .clk_bar(clk_bar), .vdd(vdd), .vss(vss)
+    );
+
+endmodule

@@ -8,6 +8,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from switch_model.config import SwitchConfig, SwitchType
+from switch_model.netlist import drive_voltages
 
 
 @dataclass(frozen=True)
@@ -60,7 +61,7 @@ def bs_ron(_v_in: float, _v_clk: float, cfg: SwitchConfig) -> float:
 
 def cmos_ron(v_in: float, v_clk: float, cfg: SwitchConfig) -> float:
     """Return transmission-gate on-resistance (NMOS || PMOS)."""
-    v_clk_bar = cfg.vdd_v - v_clk + cfg.vss_v
+    _, v_clk_bar = drive_voltages(cfg)
     r_n = nmos_ron(v_in, v_clk, cfg)
     r_p = pmos_ron(v_in, v_clk_bar, cfg)
     return _parallel_resistance(r_n, r_p)
@@ -89,7 +90,9 @@ def ron_vs_vin(
     vclk_v: float | None = None,
 ) -> NDArray[np.float64]:
     """Sweep Ron versus input voltage with switch asserted on."""
-    clk = cfg.vclk_high_v if vclk_v is None else vclk_v
+    clk, _ = drive_voltages(cfg)
+    if vclk_v is not None:
+        clk = vclk_v
     return np.array([switch_ron(float(v), clk, cfg) for v in vin_v], dtype=np.float64)
 
 

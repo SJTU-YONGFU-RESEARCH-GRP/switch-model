@@ -22,11 +22,21 @@
 | `charge_injection.v_inj_v` | V | Equivalent injection step |
 | `clock_feedthrough.v_feedthrough_v` | V | Feedthrough step at output |
 
-## Testbench netlists (planned)
+## Engines
 
-| Engine | Path | Status |
-| --- | --- | --- |
-| ngspice | `testbench/ngspice/ron_sweep.cir` | Scaffold |
-| spectre | `testbench/spectre/ron_sweep.scs` | Scaffold |
+| Engine | Ron | Noise | Implementation |
+| --- | --- | --- | --- |
+| `python` | Full | Full | `src/switch_model/` macromodel |
+| `ngspice` | Full | Python-backed | `testbench/ngspice/ron_sweep.cir` (behavioral B-source) |
+| `spectre` | VA + PSF | Python-backed | `testbench/spectre/ron_sweep.scs` + `veriloga/configurable_switch.va` |
 
-Python engine is fully implemented; SPICE/Spectre decks reference `veriloga/configurable_switch.va`.
+ngspice uses **behavioral SPICE** with the same Ron equations as Python/VA (native Verilog-A is not required in ngspice). Spectre runs the **Verilog-A** module when a license is available.
+
+## Cross-engine comparison
+
+```bash
+./scripts/run_all_simulations.sh --skip-missing
+python scripts/compare_engines.py --output-root outputs
+```
+
+Writes `outputs/REPORT.md` with per-engine links and metric spread table.
