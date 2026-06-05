@@ -291,7 +291,7 @@ def write_engine_comparison_report(
     if result.spectre_fallback:
         lines.append(
             "- **Spectre status:** excluded from comparison "
-            "(all runs fell back to Python — check license in "
+            "(all runs fell back to Python — source Cadence env and see "
             "`spectre/*/logs/spectre_ron_sweep.log`)"
         )
         lines.append("")

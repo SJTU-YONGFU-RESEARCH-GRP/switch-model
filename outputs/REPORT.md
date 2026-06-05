@@ -1,7 +1,9 @@
 # switch-model — multi-engine comparison
 
-- **Generated:** 2026-06-05 17:05:53 UTC
-- **Engines compared:** python, ngspice, spectre
+- **Generated:** 2026-06-05 18:44:44 UTC
+- **Engines compared:** python, ngspice
+
+- **Spectre status:** excluded from comparison (all runs fell back to Python — source Cadence env and see `spectre/*/logs/spectre_ron_sweep.log`)
 
 Peer engines implement the same Ron equations (see `docs/MODEL.md`):
 

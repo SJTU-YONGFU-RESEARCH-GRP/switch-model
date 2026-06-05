@@ -38,14 +38,9 @@ def find_spectre_executable() -> str:
     found = shutil.which("spectre")
     if found:
         return found
-    for candidate in (
-        "/eda/cadence/SPECTRE241/tools/bin/spectre",
-        "/eda/cadence/SPECTRE231/tools/bin/spectre",
-    ):
-        if Path(candidate).is_file():
-            return candidate
     raise SpectreNotFoundError(
-        "Cadence Spectre not found on PATH. Install Spectre or use --simulator python."
+        "Cadence Spectre not found on PATH. Source your Cadence environment "
+        "before running Spectre, or use --simulator python."
     )
 
 
@@ -137,14 +132,8 @@ class SpectreRunResult:
 
 
 def _spectre_env() -> dict[str, str]:
-    """Return subprocess environment with Cadence license when available."""
-    env = os.environ.copy()
-    if "LM_LICENSE_FILE" not in env:
-        for lic in (Path("/eda/cadence/license.dat"),):
-            if lic.is_file():
-                env["LM_LICENSE_FILE"] = str(lic)
-                break
-    return env
+    """Return subprocess environment for Spectre (inherits caller env, no license injection)."""
+    return os.environ.copy()
 
 
 def run_spectre_netlist(

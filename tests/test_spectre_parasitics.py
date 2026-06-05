@@ -19,8 +19,7 @@ from switch_model.spectre_engine import (
 from switch_model.spectre_psf import read_spectre_parasitics_psf
 
 pytestmark = pytest.mark.skipif(
-    __import__("shutil").which("spectre") is None
-    and not Path("/eda/cadence/SPECTRE241/tools/bin/spectre").is_file(),
+    __import__("shutil").which("spectre") is None,
     reason="Spectre not on PATH",
 )
 

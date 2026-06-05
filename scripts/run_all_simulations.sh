@@ -17,6 +17,10 @@ Options:
   --output-root DIR   Base output directory (default: ${ROOT_DIR}/outputs).
   --skip-missing      Skip ngspice/spectre when binaries are absent or fail.
   -h, --help          Show this message.
+
+Environment:
+  CADENCE_ENV         Optional path to Cadence shell env to source before Spectre runs.
+                      Example: CADENCE_ENV=/eda/env/cadence.river.zsh
 EOF
 }
 
@@ -31,8 +35,13 @@ done
 
 cd "${ROOT_DIR}"
 
-if [[ -z "${LM_LICENSE_FILE:-}" && -f /eda/cadence/license.dat ]]; then
-    export LM_LICENSE_FILE=/eda/cadence/license.dat
+if [[ -n "${CADENCE_ENV:-}" ]]; then
+    if [[ ! -f "$CADENCE_ENV" ]]; then
+        echo "Warning: CADENCE_ENV not found: $CADENCE_ENV" >&2
+    else
+        # shellcheck disable=SC1090
+        source "$CADENCE_ENV"
+    fi
 fi
 
 # shellcheck disable=SC1091
@@ -50,9 +59,8 @@ run_engine() {
                 echo "Skipping ngspice — not on PATH."
                 return 0
             fi
-            if [[ "${engine}" == "spectre" ]] && ! command -v spectre >/dev/null 2>&1 \
-                && [[ ! -x /eda/cadence/SPECTRE241/tools/bin/spectre ]]; then
-                echo "Skipping spectre — not on PATH."
+            if [[ "${engine}" == "spectre" ]] && ! command -v spectre >/dev/null 2>&1; then
+                echo "Skipping spectre — not on PATH (source Cadence env first)."
                 return 0
             fi
         fi

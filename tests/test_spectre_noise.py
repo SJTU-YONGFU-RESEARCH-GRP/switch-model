@@ -11,9 +11,8 @@ from switch_model.io import package_root
 from switch_model.spectre_engine import render_spectre_noise_netlist
 
 pytestmark = pytest.mark.skipif(
-    __import__("shutil").which("spectre") is None
-    and not Path("/eda/cadence/SPECTRE241/tools/bin/spectre").is_file(),
-    reason="Spectre not available",
+    __import__("shutil").which("spectre") is None,
+    reason="Spectre not on PATH",
 )
 
 

@@ -1,0 +1,1 @@
+Spectre noise fallback to Python: Cadence Spectre not found on PATH. Source your Cadence environment before running Spectre, or use --simulator python.

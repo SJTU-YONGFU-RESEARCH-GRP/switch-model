@@ -1,6 +1,6 @@
 # switch-model — simulation summary
 
-- **Generated:** 2026-06-05 17:05:24 UTC
+- **Generated:** 2026-06-05 18:44:22 UTC
 - **Output root:** `ngspice/`
 
 Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWCAS 2021.

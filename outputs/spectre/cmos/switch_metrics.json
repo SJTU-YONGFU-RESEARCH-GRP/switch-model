@@ -8,26 +8,26 @@
     "cp2_f": 2.5e-14
   },
   "engine": "spectre",
-  "ron_source": "spectre_va",
+  "ron_source": "python_fallback",
   "ron": {
     "ron_min_ohm": 3571.4285714285716,
-    "ron_max_ohm": 6657.608696656297,
-    "ron_at_vcm_ohm": 5684.454757382409,
-    "linearity_error_pct": 1543.0900626138628
+    "ron_max_ohm": 6657.608695652173,
+    "ron_at_vcm_ohm": 5684.454756380511,
+    "linearity_error_pct": 1543.0900621118008
   },
-  "noise_source": "spectre_va",
+  "noise_source": "python_fallback",
   "noise": {
     "flicker_corner_hz": 26.406663339728887,
     "noise_at_1hz_v_per_sqrt_hz": 5.093793354942576e-08
   },
-  "parasitics_source": "spectre_behavioral",
+  "parasitics_source": "python_fallback",
   "charge_injection": {
-    "q_inj_coulomb": 9e-14,
-    "v_inj_v": 0.0857142857143,
+    "q_inj_coulomb": 9.000000000000001e-14,
+    "v_inj_v": 0.08571428571428573,
     "dummy_reduction_pct": 0.0
   },
   "clock_feedthrough": {
-    "v_feedthrough_v": 0.0418604651163,
-    "attenuation_db": -32.6693691116
+    "v_feedthrough_v": 0.041860465116279076,
+    "attenuation_db": -32.66936911159173
   }
 }
