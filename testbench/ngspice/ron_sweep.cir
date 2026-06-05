@@ -1,0 +1,16 @@
+* Ron sweep scaffold — uses configurable_nmos_switch.va when AHDL is available.
+* Reference: Zhou et al., NEWCAS 2021.
+
+.title switch_model_ron_sweep
+.include "../../veriloga/configurable_nmos_switch.va"
+
+Vdd vdd 0 1.8
+Vss vss 0 0
+Vclk clk 0 1.8
+Vin in 0 0.9
+
+N1 in out clk vdd vss configurable_nmos_switch
+
+.dc Vin 0 1.8 0.05
+.print dc v(in,out)
+.end

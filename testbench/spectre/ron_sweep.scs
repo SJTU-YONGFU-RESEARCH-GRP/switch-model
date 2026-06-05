@@ -1,0 +1,13 @@
+// Ron sweep scaffold — Spectre + Verilog-A
+// Reference: Zhou et al., NEWCAS 2021
+
+ahdl_include "../../veriloga/configurable_nmos_switch.va"
+
+V0 (vdd 0) vsource dc=1.8
+V1 (vss 0) vsource dc=0
+Vclk (clk 0) vsource dc=1.8 type=dc
+Vin (in 0) vsource dc=0.9 type=dc
+
+N1 (in out clk vdd vss) configurable_nmos_switch
+
+dc dc dev=N1 param=Vin start=0 stop=1.8 step=0.05

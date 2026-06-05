@@ -1,0 +1,19 @@
+# Optional reference targets from Zhou et al., NEWCAS 2021 Table I.
+# Not used as engine truth — for future compare_engines workflow.
+
+reference:
+  paper: "Flicker Noise Analysis on Chopper Amplifier"
+  doi: "10.1109/NEWCAS50681.2021.9462742"
+  fch_hz: [200, 1000, 2000, 5000, 10000, 50000]
+  parasitic_cap_f: 25.0e-15
+  chopper_noise_reduction_x: 4.9
+
+switch_types:
+  nmos:
+    label: NS
+  nmos_dummy:
+    label: NS-D
+  cmos:
+    label: TG
+  bs:
+    label: BS
