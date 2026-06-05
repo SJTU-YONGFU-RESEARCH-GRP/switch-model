@@ -1,6 +1,6 @@
 # bs_dummy (BS+D)
 
-- **Generated:** 2026-06-05 09:48:51 UTC
+- **Generated:** 2026-06-05 14:05:23 UTC
 
 ## Bench reports
 
@@ -24,7 +24,7 @@
 | --- | --- |
 | Ron min | 200 Ω |
 | Ron max | 200 Ω |
-| Linearity error | 0 % |
+| Linearity error | 5e-07 % |
 | Flicker corner | 754.5 Hz |
 | V_inj | 0.04286 V |
 | V_cf | 0.07826 V |

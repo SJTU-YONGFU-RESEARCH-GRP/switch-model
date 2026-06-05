@@ -1,0 +1,147 @@
+
+Spectre (R) Circuit Simulator
+Version 24.1.0.167.isr2 64bit -- 28 Nov 2024
+Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: yongfu   Host: river   HostID: 7F0100   PID: 2323982
+Memory  available: 350.3446 GB  physical: 405.0724 GB
+Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
+CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
+        Socket: Processors [Frequency] (Hyperthreaded Processor)
+        0:       0 [3082.5] ( 24 ),  1 [2926.2] ( 25 ),  2 [3300.0] ( 26 )
+                 3 [3300.0] ( 27 ),  4 [3102.4] ( 28 ),  5 [3300.0] ( 29 )
+                 6 [3052.0] ( 30 ),  7 [2918.3] ( 31 ),  8 [3300.0] ( 32 )
+                 9 [3300.0] ( 33 ), 10 [3300.0] ( 34 ), 11 [2992.6] ( 35 )
+        1:      12 [3300.0] ( 36 ), 13 [2983.9] ( 37 ), 14 [3300.0] ( 38 )
+                15 [3300.0] ( 39 ), 16 [3300.0] ( 40 ), 17 [2906.5] ( 41 )
+                18 [2897.8] ( 42 ), 19 [2895.2] ( 43 ), 20 [2903.5] ( 44 )
+                21 [3300.0] ( 45 ), 22 [3297.4] ( 46 ), 23 [3300.0] ( 47 )
+        
+System load averages (1min, 5min, 15min) : 8.4 %, 57.9 %, 83.8 %
+Hyperthreading is enabled
+
+
+Simulating `/home/yongfu/proj/switch-model/testbench/spectre/ron_sweep_fixed_test.scs' on river at 6:12:19 PM, Fri Jun 5, 2026 (process id: 2323982).
+Current working directory: /home/yongfu/proj/switch-model/testbench/spectre
+Command line:
+    /eda/cadence/SPECTRE241/tools/bin/spectre -64 +log  \
+        ron_fixed_test.log  \
+        /home/yongfu/proj/switch-model/testbench/spectre/ron_sweep_fixed_test.scs
+
+Licensing Information:
+[18:12:19.080305] Configured Lic search path (24.01-s002): /eda/cadence/license.dat
+
+Licensing Information:
+[18:12:19.268928] Periodic Lic check successful
+
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_I_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /home/yongfu/proj/switch-model/testbench/spectre/ron_sweep_fixed_test.scs
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/yongfu/proj/switch-model/veriloga/test_fixed_ron.va
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+Time for NDB Parsing: CPU = 218.66 ms, elapsed = 398.318 ms.
+Time accumulated: CPU = 320.389 ms, elapsed = 398.32 ms.
+Peak resident memory used = 194 Mbytes.
+
+Created directory ./ron_sweep_fixed_test.ahdlSimDB/ (775)
+Created directory ./ron_sweep_fixed_test.ahdlSimDB//d6ce7e0c69080766ec47789190d3e7b9.test_fixed_ron.ahdlcmi/ (775)
+Created directory ./ron_sweep_fixed_test.ahdlSimDB//d6ce7e0c69080766ec47789190d3e7b9.test_fixed_ron.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library for test_fixed_ron.
+Finished compilation in 859 ms (elapsed) for test_fixed_ron.
+Installed compiled interface for test_fixed_ron.
+Time for Elaboration: CPU = 911.187 ms, elapsed = 885.293 ms.
+Time accumulated: CPU = 1.23169 s, elapsed = 1.28373 s.
+Peak resident memory used = 207 Mbytes.
+
+
+Time for EDB Visiting: CPU = 693 us, elapsed = 693.083 us.
+Time accumulated: CPU = 1.2325 s, elapsed = 1.28453 s.
+Peak resident memory used = 208 Mbytes.
+
+
+Notice from spectre during topology check.
+    Only one connection to the following 4 nodes:
+        vdd
+        vss
+        clk
+        clkbar
+
+
+Global user options:
+
+Scoped user options:
+
+Circuit inventory:
+              nodes 6
+           resistor 1     
+     test_fixed_ron 1     
+            vsource 5     
+
+Analysis and control statement inventory:
+                 dc 1     
+
+Output statements:
+             .probe 0     
+           .measure 0     
+               save 1     
+
+
+Notice from spectre during initial setup.
+    1 resistor is changed to resistance form because its value is less than 'rthresh'.
+
+Time for parsing: CPU = 14.724 ms, elapsed = 13.665 ms.
+Time accumulated: CPU = 1.24832 s, elapsed = 1.29831 s.
+Peak resident memory used = 211 Mbytes.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Pre-Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+
+*****************************************
+DC Analysis `dc': Vin:dc = (0 V -> 1.8 V)
+*****************************************
+
+Opening the PSF file ./ron_sweep_fixed_test.raw/dc.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+......9......8......7......6......5......4......3......2......1......0
+
+Maximum value achieved for any signal of each quantity: 
+V: V(in) = 1.8 V
+I: I(Vin:p) = 360 uA
+DC simulation time: CPU = 8.928 ms, elapsed = 5.42092 ms.
+
+Notice from spectre at dc = 1.8 V during DC analysis `dc'.
+    The value of parameter 'dc' has been reset to the original value 0.
+
+Total time required for dc analysis `dc': CPU = 8.98 ms, elapsed = 5.47218 ms, util. = 164%.
+Time accumulated: CPU = 1.28096 s, elapsed = 1.31551 s.
+Peak resident memory used = 213 Mbytes.
+
+Licensing Information:
+Lic Summary:
+[18:12:20.262745] Cdslmd servers:/eda/cadence/license.dat
+[18:12:20.787061] Feature usage summary:
+[18:12:20.787062] Virtuoso_Spectre
+
+
+Aggregate audit (6:12:20 PM, Fri Jun 5, 2026):
+Time used: CPU = 1.28 s, elapsed = 1.32 s, util. = 97.5%.
+Time spent in licensing: elapsed = 254 ms, percentage of total = 19.3%.
+Peak memory used = 214 Mbytes.
+Simulation started at: 6:12:19 PM, Fri Jun 5, 2026, ended at: 6:12:20 PM, Fri Jun 5, 2026, with elapsed time (wall clock): 1.32 s.
+spectre completes with 0 errors, 0 warnings, and 4 notices.

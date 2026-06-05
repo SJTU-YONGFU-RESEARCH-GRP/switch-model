@@ -61,7 +61,28 @@ def main() -> None:
         title=f"Channel noise ({engine})",
         flicker_corner_hz=result["flicker_corner_hz"],
     )
-    write_metrics_json(out_dir / "switch_metrics.json", build_switch_metrics(cfg, noise=result))
+    noise_source = args.simulator
+    if args.simulator == "python":
+        noise_source = "python"
+    elif args.simulator == "ngspice":
+        if (out_dir / "logs" / "ngspice_noise_fallback.log").is_file():
+            noise_source = "python_fallback"
+        else:
+            noise_source = "ngspice_behavioral"
+    elif args.simulator == "spectre":
+        if (out_dir / "logs" / "spectre_noise_fallback.log").is_file():
+            noise_source = "python_fallback"
+        else:
+            noise_source = "spectre_va"
+    write_metrics_json(
+        out_dir / "switch_metrics.json",
+        build_switch_metrics(
+            cfg,
+            noise=result,
+            engine=args.simulator,
+            noise_source=noise_source,
+        ),
+    )
     write_noise_report(
         out_dir / "NOISE_REPORT.md",
         switch_type=cfg.switch_type.value,

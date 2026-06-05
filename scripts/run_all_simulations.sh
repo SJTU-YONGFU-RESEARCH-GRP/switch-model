@@ -31,6 +31,10 @@ done
 
 cd "${ROOT_DIR}"
 
+if [[ -z "${LM_LICENSE_FILE:-}" && -f /eda/cadence/license.dat ]]; then
+    export LM_LICENSE_FILE=/eda/cadence/license.dat
+fi
+
 if [[ -f "${ROOT_DIR}/.venv/bin/activate" ]]; then
     # shellcheck disable=SC1091
     source "${ROOT_DIR}/.venv/bin/activate"
@@ -76,7 +80,13 @@ run_engine() {
                 return 1
             fi
         fi
-        "${PYTHON}" scripts/run_parasitics.py --switch-type "${stype}" --output-dir "${sub}" || true
+        if ! "${PYTHON}" scripts/run_parasitics.py --simulator "${engine}" --switch-type "${stype}" --output-dir "${sub}"; then
+            if [[ "${SKIP_MISSING}" -eq 1 ]]; then
+                echo "Warning: run_parasitics failed for ${engine}/${stype}" >&2
+            else
+                return 1
+            fi
+        fi
     done
 
     "${PYTHON}" scripts/run_compare_switches.py --output-dir "${out}/compare" || true

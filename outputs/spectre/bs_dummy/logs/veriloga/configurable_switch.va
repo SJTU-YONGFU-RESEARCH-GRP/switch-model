@@ -17,7 +17,8 @@
 (* compact_module *)
 module configurable_switch(in, out, clk, clk_bar, vdd, vss);
 
-    inout in, out, clk, clk_bar, vdd, vss;
+    inout in, out;
+    input clk, clk_bar, vdd, vss;
     electrical in, out, clk, clk_bar, vdd, vss;
 
     parameter integer SWITCH_KIND = 0 from [0:5];
@@ -57,7 +58,6 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
     real pn_flicker;
     real cgs_tot;
     real cgd_tot;
-    real dv_clk;
     integer sw_on;
 
     analog function integer sign_r;
@@ -111,11 +111,8 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
             end
         end
 
-        // Channel conductance (V = I*Ron when on, high-Z when off).
-        if (sw_on)
-            V(in, out) <+ ron * I(in, out);
-        else
-            V(in, out) <+ ROFF_OHM * I(in, out);
+        // Channel conductance — ``ron`` already holds ROFF_OHM when the switch is off.
+        V(in, out) <+ ron * I(in, out);
 
         // Parasitic capacitors (charge injection + clock feedthrough).
         cgs_tot = CGS_F;
@@ -124,14 +121,11 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
             cgs_tot = cgs_tot + CGS_DUMMY_F;
             cgd_tot = cgd_tot + CGD_DUMMY_F;
         end
-        if (cgs_tot > 0.0)
-            I(in) <+ cgs_tot * ddt(V(clk));
-        if (cgd_tot > 0.0)
-            I(out) <+ cgd_tot * ddt(V(clk));
-        if (CP1_F > 0.0)
-            I(in) <+ CP1_F * ddt(V(in));
-        if (CP2_F > 0.0)
-            I(out) <+ CP2_F * ddt(V(out));
+        // Spectre requires ddt() outside conditionals; zero-valued caps contribute nothing.
+        I(in) <+ cgs_tot * ddt(V(clk));
+        I(out) <+ cgd_tot * ddt(V(clk));
+        I(in) <+ CP1_F * ddt(V(in));
+        I(out) <+ CP2_F * ddt(V(out));
 
         // Channel noise (Coram-corrected flicker + thermal, paper Fig. 3).
         if (ENABLE_NOISE != 0.0 && sw_on && ron > 0.0) begin
@@ -144,8 +138,9 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
             else
                 I(in, out) <+ white_noise(4.0 * `P_K * $temperature / ron, "thermal");
             if (EN_FLICKER_1HZ_V_PER_SQRT_HZ > 0.0)
+                // Input-referred channel flicker at 1 Hz (V^2/Hz), paper / Python macromodel.
                 I(in, out) <+ flicker_noise(
-                    EN_FLICKER_1HZ_V_PER_SQRT_HZ * EN_FLICKER_1HZ_V_PER_SQRT_HZ / (ron * ron),
+                    EN_FLICKER_1HZ_V_PER_SQRT_HZ * EN_FLICKER_1HZ_V_PER_SQRT_HZ,
                     EN_FLICKER_EF, "flicker");
             else if (KF > 0.0)
                 I(in, out) <+ flicker_noise(sign_r(ir) * pn_flicker, EN_FLICKER_EF, "flicker");

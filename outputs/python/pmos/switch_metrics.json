@@ -7,16 +7,20 @@
     "cp1_f": 2.5e-14,
     "cp2_f": 2.5e-14
   },
+  "engine": "python",
+  "ron_source": "python",
   "ron": {
-    "ron_min_ohm": 1000000000000.0,
-    "ron_max_ohm": 1000000000000.0,
-    "ron_at_vcm_ohm": 1000000000000.0,
-    "linearity_error_pct": 0.0
+    "ron_min_ohm": 4761.9047619047615,
+    "ron_max_ohm": 1633333.3333333358,
+    "ron_at_vcm_ohm": 13841.807909604515,
+    "linearity_error_pct": 814285.7142857155
   },
+  "noise_source": "python",
   "noise": {
-    "flicker_corner_hz": NaN,
-    "noise_at_1hz_v_per_sqrt_hz": 5.0000000000000004e-08
+    "flicker_corner_hz": 11.317141431312379,
+    "noise_at_1hz_v_per_sqrt_hz": 5.2162283692338475e-08
   },
+  "parasitics_source": "python",
   "charge_injection": {
     "q_inj_coulomb": 9.000000000000001e-14,
     "v_inj_v": 0.08571428571428573,

@@ -2,6 +2,6 @@
 
 | Metric | Value |
 | --- | --- |
-| Flicker corner | N/A |
+| Flicker corner | 11.32 Hz |
 
 ![Noise spectrum](noise_spectrum.svg)

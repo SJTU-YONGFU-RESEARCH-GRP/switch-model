@@ -57,6 +57,19 @@ def flicker_voltage_density(
     return (en_1hz / f ** (noise.en_flicker_ef / 2.0)).astype(np.float64)
 
 
+def _leg_noise_spectrum(
+    frequency_hz: NDArray[np.float64],
+    noise: SwitchNoiseConfig,
+    *,
+    ron_ohm: float,
+    current_a: float,
+) -> NDArray[np.float64]:
+    """Return per-leg channel noise voltage density (V/√Hz)."""
+    thermal = thermal_voltage_density(ron_ohm, noise)
+    flicker = flicker_voltage_density(frequency_hz, noise, current_a, ron_ohm)
+    return np.sqrt(thermal**2 + flicker**2).astype(np.float64)
+
+
 def channel_noise_density(
     frequency_hz: NDArray[np.float64],
     cfg: SwitchConfig,
@@ -73,10 +86,69 @@ def channel_noise_density(
     if vclk_v is not None:
         clk = vclk_v
     ron = switch_ron(v_in, clk, cfg)
-    current = channel_current_a(v_in, v_out, ron)
-    thermal = thermal_voltage_density(ron, noise)
-    flicker = flicker_voltage_density(frequency_hz, noise, current, ron)
-    return np.sqrt(thermal**2 + flicker**2).astype(np.float64)
+    return _leg_noise_spectrum(
+        frequency_hz,
+        noise,
+        ron_ohm=ron,
+        current_a=channel_current_a(v_in, v_out, ron),
+    )
+
+
+def thermal_noise_floor(cfg: SwitchConfig, *, v_in: float | None = None) -> float:
+    """Return thermal noise floor (V/√Hz) at VCM for spectrum corner extraction."""
+    vcm = 0.5 * (cfg.vdd_v + cfg.vss_v) if v_in is None else v_in
+    vclk, _ = drive_voltages(cfg)
+    ron = switch_ron(vcm, vclk, cfg)
+    return thermal_voltage_density(ron, cfg.noise)
+
+
+def flicker_corner_from_spectrum(
+    frequency_hz: NDArray[np.float64],
+    noise_v_per_sqrt_hz: NDArray[np.float64],
+    *,
+    cfg: SwitchConfig | None = None,
+) -> float:
+    """Estimate flicker corner (Hz) from a simulated noise spectrum.
+
+    When ``cfg`` is provided, anchors the corner to the simulated density at
+    1 Hz (first sweep point) and the macromodel thermal floor at VCM, using
+    the configured ``1/f`` exponent. This matches analytic corners when the
+    simulated 1 Hz level agrees across engines.
+
+    Without ``cfg``, falls back to locating the thermal crossing on the full
+    spectrum using the high-frequency noise floor.
+    """
+    vn = np.asarray(noise_v_per_sqrt_hz, dtype=np.float64)
+    if vn.size < 1 or not np.all(np.isfinite(vn)):
+        return float("nan")
+    if cfg is not None:
+        white = thermal_noise_floor(cfg)
+        flicker_1hz = float(np.sqrt(np.maximum(vn[0] ** 2 - white**2, 0.0)))
+        ef = cfg.noise.en_flicker_ef
+        if white <= 0.0 or flicker_1hz <= 0.0 or ef <= 0.0:
+            return float("nan")
+        return float((flicker_1hz / white) ** (2.0 / ef))
+
+    f = np.asarray(frequency_hz, dtype=np.float64)
+    if vn.size < 3:
+        return float("nan")
+    n_hi = max(3, int(0.2 * vn.size))
+    white = float(np.median(vn[-n_hi:]))
+    if white <= 0.0:
+        return float("nan")
+    flicker = np.sqrt(np.maximum(vn**2 - white**2, 0.0))
+    if not np.any(flicker > white):
+        return float("nan")
+    for idx in range(1, flicker.size):
+        if flicker[idx - 1] > white >= flicker[idx]:
+            f0, f1 = float(f[idx - 1]), float(f[idx])
+            v0, v1 = float(flicker[idx - 1]), float(flicker[idx])
+            if abs(v1 - v0) < 1.0e-30:
+                return f1
+            frac = (white - v0) / (v1 - v0)
+            frac = min(max(frac, 0.0), 1.0)
+            return f0 + frac * (f1 - f0)
+    return float(f[-1])
 
 
 def flicker_corner_hz(cfg: SwitchConfig, *, v_in: float = 0.9, v_out: float = 0.9) -> float:

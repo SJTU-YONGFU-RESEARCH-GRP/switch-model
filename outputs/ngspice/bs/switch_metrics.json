@@ -7,23 +7,27 @@
     "cp1_f": 2.5e-14,
     "cp2_f": 2.5e-14
   },
+  "engine": "ngspice",
+  "ron_source": "ngspice_behavioral",
   "ron": {
     "ron_min_ohm": 200.0,
     "ron_max_ohm": 200.0,
     "ron_at_vcm_ohm": 200.0,
     "linearity_error_pct": 0.0
   },
+  "noise_source": "ngspice_behavioral",
   "noise": {
-    "flicker_corner_hz": 754.4760954208251,
-    "noise_at_1hz_v_per_sqrt_hz": 5.003312460360637e-08
+    "flicker_corner_hz": 754.4765935961123,
+    "noise_at_1hz_v_per_sqrt_hz": 5.00331411e-08
   },
+  "parasitics_source": "ngspice_behavioral",
   "charge_injection": {
-    "q_inj_coulomb": 9.000000000000001e-14,
-    "v_inj_v": 0.08571428571428573,
+    "q_inj_coulomb": 9e-14,
+    "v_inj_v": 0.0857142857,
     "dummy_reduction_pct": 0.0
   },
   "clock_feedthrough": {
-    "v_feedthrough_v": 0.041860465116279076,
-    "attenuation_db": -32.66936911159173
+    "v_feedthrough_v": 0.0418604651,
+    "attenuation_db": -32.6693691
   }
 }

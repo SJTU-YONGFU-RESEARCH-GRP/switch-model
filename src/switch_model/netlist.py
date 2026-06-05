@@ -24,7 +24,25 @@ def drive_voltages(cfg: SwitchConfig) -> tuple[float, float]:
         return cfg.vclk_low_v, cfg.vdd_v - cfg.vclk_low_v
     if cfg.switch_type == SwitchType.CMOS:
         return cfg.vclk_high_v, cfg.vclk_low_v
-    return cfg.vclk_high_v, cfg.vclk_high_v
+    return cfg.vclk_high_v, cfg.vclk_low_v
+
+
+def _pmos_conductance_expr(
+    clk: str,
+    inp: str,
+    *,
+    kp: float,
+    ratio: float,
+    vth_p: float,
+    roff: float,
+) -> str:
+    """PMOS channel conductance matching ``pmos_ron()`` / Verilog-A (no ``max`` floor)."""
+    vgs = f"({clk}-{inp})"
+    vgs_eff = f"({vth_p}-{vgs})"
+    on = f"({vgs}<{vth_p})*({vgs_eff}>1e-6)"
+    g_on = f"{kp}*{ratio}*{vgs_eff}"
+    g_off = f"{1.0 / roff}"
+    return f"({on})*({g_on}) + (1-({on}))*({g_off})"
 
 
 def ngspice_ron_probe_expr(cfg: SwitchConfig) -> str:
@@ -42,9 +60,8 @@ def ngspice_ron_probe_expr(cfg: SwitchConfig) -> str:
         f"(V(clk)>{vth_n})*({kn}*{ratio}*max(V(clk)-V(in)-{vth_n},1e-9))"
         f" + (V(clk)<={vth_n})*{1.0 / roff}"
     )
-    pmos_g = (
-        f"(V(clk)-V(in)<{vth_p})*({kp}*{ratio}*max({vth_p}-(V(clk)-V(in)),1e-9))"
-        f" + (V(clk)-V(in)>={vth_p})*{1.0 / roff}"
+    pmos_g = _pmos_conductance_expr(
+        "V(clk)", "V(in)", kp=kp, ratio=ratio, vth_p=vth_p, roff=roff
     )
     bs_g = f"(V(clk)>{vth_n})*{1.0 / ron_bs} + (V(clk)<={vth_n})*{1.0 / roff}"
 
@@ -57,9 +74,10 @@ def ngspice_ron_probe_expr(cfg: SwitchConfig) -> str:
             g_expr = bs_g
         case SwitchType.CMOS:
             # Parallel conductance: g = g_n + g_p (avoid division by zero).
-            g_expr = (
-                f"(({nmos_g}) + ({pmos_g.replace('V(clk)', 'V(clkbar)')}))"
+            pmos_cmos = _pmos_conductance_expr(
+                "V(clkbar)", "V(in)", kp=kp, ratio=ratio, vth_p=vth_p, roff=roff
             )
+            g_expr = f"(({nmos_g}) + ({pmos_cmos}))"
         case _:
             msg = f"Unsupported switch type: {cfg.switch_type}"
             raise ValueError(msg)

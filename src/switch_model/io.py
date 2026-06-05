@@ -50,6 +50,83 @@ def write_ron_csv(path: Path, vin_v: NDArray[np.float64], ron_ohm: NDArray[np.fl
     np.savetxt(path, data, delimiter=",", header=",".join(RON_COLUMNS), comments="")
 
 
+def align_ron_to_vin_grid(
+    vin_ref: NDArray[np.float64],
+    vin_sim: NDArray[np.float64],
+    ron_sim: NDArray[np.float64],
+) -> NDArray[np.float64]:
+    """Map simulated Ron onto the reference Vin grid.
+
+    When ngspice ``wrdata`` Vin values are index-aligned with ``vin_ref`` (same
+    length and within microvolt tolerance, as from a matching DC step sweep),
+    return ``ron_sim`` directly.  Otherwise fall back to linear interpolation.
+    """
+    if (
+        len(vin_ref) == len(vin_sim)
+        and np.allclose(vin_ref, vin_sim, rtol=0.0, atol=1.0e-6)
+    ):
+        return ron_sim.astype(np.float64)
+    return np.interp(vin_ref, vin_sim, ron_sim).astype(np.float64)
+
+
+def read_ngspice_noise_wrdata(path: Path) -> dict[str, NDArray[np.float64]]:
+    """Read ngspice ``wrdata`` from a channel-noise analysis.
+
+    Supports merged ``frequency total`` output (4 columns with ``wr_singlescale``)
+    or legacy thermal ``onoise_spectrum`` / ``inoise_spectrum`` columns.
+    """
+    table = np.loadtxt(path)
+    if table.ndim == 1:
+        table = table.reshape(1, -1)
+    if table.shape[1] < 2:
+        msg = f"Expected >= 2 columns in noise wrdata, got {table.shape[1]}."
+        raise ValueError(msg)
+    frequency_hz = table[:, 0].astype(np.float64)
+    if table.shape[1] == 2:
+        noise = table[:, 1].astype(np.float64)
+        return {
+            "frequency_hz": frequency_hz,
+            "noise_v_per_sqrt_hz": noise,
+            "onoise_v_per_sqrt_hz": noise,
+            "inoise_v_per_sqrt_hz": noise,
+        }
+    if table.shape[1] in (3, 4):
+        noise = table[:, -1].astype(np.float64)
+        return {
+            "frequency_hz": frequency_hz,
+            "noise_v_per_sqrt_hz": noise,
+            "onoise_v_per_sqrt_hz": noise,
+            "inoise_v_per_sqrt_hz": noise,
+        }
+    return {
+        "frequency_hz": frequency_hz,
+        "noise_v_per_sqrt_hz": table[:, -1].astype(np.float64),
+        "onoise_v_per_sqrt_hz": table[:, -2].astype(np.float64),
+        "inoise_v_per_sqrt_hz": table[:, -1].astype(np.float64),
+    }
+
+
+def read_ngspice_parasitics_wrdata(path: Path) -> dict[str, float]:
+    """Read scalar parasitic metrics from ngspice ``parasitics.raw``.
+
+    ``wrdata`` stores each scalar vector as index/value pairs on one row.
+    """
+    table = np.loadtxt(path)
+    if table.ndim == 1:
+        table = table.reshape(1, -1)
+    if table.shape[1] < 10:
+        msg = f"Expected 10 columns in parasitics wrdata, got {table.shape[1]}."
+        raise ValueError(msg)
+    row = table[0]
+    return {
+        "q_inj_coulomb": float(row[1]),
+        "v_inj_v": float(row[3]),
+        "v_feedthrough_v": float(row[5]),
+        "attenuation_db": float(row[7]),
+        "dummy_reduction_pct": float(row[9]),
+    }
+
+
 def read_ngspice_dc_wrdata(path: Path) -> dict[str, NDArray[np.float64]]:
     """Read ngspice ``wrdata`` from DC analysis (vin, ron columns)."""
     table = np.loadtxt(path)

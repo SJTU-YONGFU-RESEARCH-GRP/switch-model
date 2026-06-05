@@ -261,23 +261,35 @@ def write_engine_comparison_report(
         msg = "result must be CompareResult"
         raise TypeError(msg)
 
+    compared = ", ".join(result.engines_compared)
     lines = [
         "# switch-model — multi-engine comparison",
         "",
         f"- **Generated:** {_utc_timestamp()}",
-        f"- **Engines:** {', '.join(engines)}",
-        "",
-        "Peer engines implement the same Ron equations (see `docs/MODEL.md`):",
-        "",
-        "| Engine | Implementation |",
-        "| --- | --- |",
-        "| `python` | Python macromodel |",
-        "| `ngspice` | Behavioral SPICE (B-source, same equations) |",
-        "| `spectre` | Verilog-A `configurable_switch.va` |",
-        "",
-        "## Per-engine summaries",
+        f"- **Engines compared:** {compared}",
         "",
     ]
+    if result.spectre_fallback:
+        lines.append(
+            "- **Spectre status:** excluded from comparison "
+            "(all runs fell back to Python — check license in "
+            "`spectre/*/logs/spectre_ron_sweep.log`)"
+        )
+        lines.append("")
+    lines.extend(
+        [
+            "Peer engines implement the same Ron equations (see `docs/MODEL.md`):",
+            "",
+            "| Engine | Implementation |",
+            "| --- | --- |",
+            "| `python` | Python macromodel |",
+            "| `ngspice` | Behavioral SPICE (B-source, same equations) |",
+            "| `spectre` | Verilog-A `configurable_switch.va` |",
+            "",
+            "## Per-engine summaries",
+            "",
+        ]
+    )
     for engine in engines:
         engine_report = output_root / engine / "REPORT.md"
         if engine_report.is_file():

@@ -1,0 +1,187 @@
+
+Spectre (R) Circuit Simulator
+Version 24.1.0.167.isr2 64bit -- 28 Nov 2024
+Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: yongfu   Host: river   HostID: 7F0100   PID: 2751168
+Memory  available: 356.4260 GB  physical: 405.0724 GB
+Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
+CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
+        Socket: Processors [Frequency] (Hyperthreaded Processor)
+        0:       0 [2955.7] ( 24 ),  1 [2932.8] ( 25 ),  2 [2913.8] ( 26 )
+                 3 [3300.0] ( 27 ),  4 [3300.0] ( 28 ),  5 [3300.0] ( 29 )
+                 6 [2901.3] ( 30 ),  7 [3300.0] ( 31 ),  8 [3300.0] ( 32 )
+                 9 [2898.9] ( 33 ), 10 [3300.0] ( 34 ), 11 [2907.8] ( 35 )
+        1:      12 [2918.4] ( 36 ), 13 [2899.0] ( 37 ), 14 [2900.8] ( 38 )
+                15 [2901.4] ( 39 ), 16 [3300.0] ( 40 ), 17 [2900.1] ( 41 )
+                18 [2899.9] ( 42 ), 19 [2901.0] ( 43 ), 20 [3300.0] ( 44 )
+                21 [2900.2] ( 45 ), 22 [2902.3] ( 46 ), 23 [2899.6] ( 47 )
+        
+System load averages (1min, 5min, 15min) : 19.1 %, 44.0 %, 72.2 %
+Hyperthreading is enabled
+
+
+Simulating `/home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists/noise_sweep.scs' on river at 10:04:52 PM, Fri Jun 5, 2026 (process id: 2751168).
+Current working directory: /home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists
+Command line:
+    /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
+        /home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists/noise_sweep.scs  \
+        +log spectre_noise.log
+
+Licensing Information:
+[22:04:52.080249] Configured Lic search path (24.01-s002): /eda/cadence/license.dat
+
+Licensing Information:
+[22:04:52.246673] Periodic Lic check successful
+
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_I_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /home/yongfu/proj/switch-model/outputs/spectre/cmos/logs/netlists/noise_sweep.scs
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/yongfu/proj/switch-model/veriloga/configurable_switch.va
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+
+Notice from spectre during AHDL read-in.
+    "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line 18:  Module configurable_switch is a compact model. As a result, it has been optimized automatically for better performance. For more information on compact models, refer to the Cadence Verilog-A Language Reference manual.
+
+Time for NDB Parsing: CPU = 211.337 ms, elapsed = 394.469 ms.
+Time accumulated: CPU = 304.243 ms, elapsed = 394.471 ms.
+Peak resident memory used = 195 Mbytes.
+
+Created directory ./noise_sweep.ahdlSimDB/ (775)
+Created directory ./noise_sweep.ahdlSimDB//0afd0f950a95451499edd7e7a8982e3e.configurable_switch.ahdlcmi/ (775)
+Created directory ./noise_sweep.ahdlSimDB//0afd0f950a95451499edd7e7a8982e3e.configurable_switch.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library for configurable_switch.
+Finished compilation in 2.33 s (elapsed) for configurable_switch.
+Installed compiled interface for configurable_switch.
+Time for Elaboration: CPU = 2.48898 s, elapsed = 2.41153 s.
+Time accumulated: CPU = 2.79333 s, elapsed = 2.80611 s.
+Peak resident memory used = 215 Mbytes.
+
+
+Time for EDB Visiting: CPU = 2.14 ms, elapsed = 1.14894 ms.
+Time accumulated: CPU = 2.79563 s, elapsed = 2.80741 s.
+Peak resident memory used = 216 Mbytes.
+
+
+Netlist title:
+        // Channel noise at VCM — Spectre + Verilog-A configurable_switch
+
+
+Global user options:
+
+Scoped user options:
+
+Circuit inventory:
+              nodes 6
+configurable_switch 1     
+           resistor 1     
+            vsource 5     
+
+Analysis and control statement inventory:
+              noise 1     
+
+Output statements:
+             .probe 0     
+           .measure 0     
+               save 1     
+
+Time for parsing: CPU = 8.48 ms, elapsed = 5.445 ms.
+Time accumulated: CPU = 2.8042 s, elapsed = 2.81295 s.
+Peak resident memory used = 219 Mbytes.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Pre-Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+
+**********************************************
+Noise Analysis `noise': freq = (1 Hz -> 1 MHz)
+**********************************************
+DC simulation time: CPU = 1.348 ms, elapsed = 356.913 us.
+
+Opening the PSF file ./noise_sweep.raw/noise.noise ...
+    noise: freq = 1.585 Hz    (3.33 %), step = 326 mHz      (1.67 %)
+    noise: freq = 1.995 Hz       (5 %), step = 410.4 mHz    (1.67 %)
+    noise: freq = 2.512 Hz    (6.67 %), step = 516.6 mHz    (1.67 %)
+    noise: freq = 3.162 Hz    (8.33 %), step = 650.4 mHz    (1.67 %)
+    noise: freq = 3.981 Hz      (10 %), step = 818.8 mHz    (1.67 %)
+    noise: freq = 5.012 Hz    (11.7 %), step = 1.031 Hz     (1.67 %)
+    noise: freq = 6.31 Hz     (13.3 %), step = 1.298 Hz     (1.67 %)
+    noise: freq = 7.943 Hz      (15 %), step = 1.634 Hz     (1.67 %)
+    noise: freq = 10 Hz       (16.7 %), step = 2.057 Hz     (1.67 %)
+    noise: freq = 12.59 Hz    (18.3 %), step = 2.589 Hz     (1.67 %)
+    noise: freq = 15.85 Hz      (20 %), step = 3.26 Hz      (1.67 %)
+    noise: freq = 19.95 Hz    (21.7 %), step = 4.104 Hz     (1.67 %)
+    noise: freq = 25.12 Hz    (23.3 %), step = 5.166 Hz     (1.67 %)
+    noise: freq = 31.62 Hz      (25 %), step = 6.504 Hz     (1.67 %)
+    noise: freq = 39.81 Hz    (26.7 %), step = 8.188 Hz     (1.67 %)
+    noise: freq = 50.12 Hz    (28.3 %), step = 10.31 Hz     (1.67 %)
+    noise: freq = 63.1 Hz       (30 %), step = 12.98 Hz     (1.67 %)
+    noise: freq = 79.43 Hz    (31.7 %), step = 16.34 Hz     (1.67 %)
+    noise: freq = 100 Hz      (33.3 %), step = 20.57 Hz     (1.67 %)
+    noise: freq = 125.9 Hz      (35 %), step = 25.89 Hz     (1.67 %)
+    noise: freq = 158.5 Hz    (36.7 %), step = 32.6 Hz      (1.67 %)
+    noise: freq = 199.5 Hz    (38.3 %), step = 41.04 Hz     (1.67 %)
+    noise: freq = 251.2 Hz      (40 %), step = 51.66 Hz     (1.67 %)
+    noise: freq = 316.2 Hz    (41.7 %), step = 65.04 Hz     (1.67 %)
+    noise: freq = 398.1 Hz    (43.3 %), step = 81.88 Hz     (1.67 %)
+    noise: freq = 501.2 Hz      (45 %), step = 103.1 Hz     (1.67 %)
+    noise: freq = 631 Hz      (46.7 %), step = 129.8 Hz     (1.67 %)
+    noise: freq = 794.3 Hz    (48.3 %), step = 163.4 Hz     (1.67 %)
+    noise: freq = 1 kHz         (50 %), step = 205.7 Hz     (1.67 %)
+    noise: freq = 1.259 kHz   (51.7 %), step = 258.9 Hz     (1.67 %)
+    noise: freq = 1.585 kHz   (53.3 %), step = 326 Hz       (1.67 %)
+    noise: freq = 1.995 kHz     (55 %), step = 410.4 Hz     (1.67 %)
+    noise: freq = 2.512 kHz   (56.7 %), step = 516.6 Hz     (1.67 %)
+    noise: freq = 3.162 kHz   (58.3 %), step = 650.4 Hz     (1.67 %)
+    noise: freq = 3.981 kHz     (60 %), step = 818.8 Hz     (1.67 %)
+    noise: freq = 5.012 kHz   (61.7 %), step = 1.031 kHz    (1.67 %)
+    noise: freq = 6.31 kHz    (63.3 %), step = 1.298 kHz    (1.67 %)
+    noise: freq = 7.943 kHz     (65 %), step = 1.634 kHz    (1.67 %)
+    noise: freq = 10 kHz      (66.7 %), step = 2.057 kHz    (1.67 %)
+    noise: freq = 12.59 kHz   (68.3 %), step = 2.589 kHz    (1.67 %)
+    noise: freq = 15.85 kHz     (70 %), step = 3.26 kHz     (1.67 %)
+    noise: freq = 19.95 kHz   (71.7 %), step = 4.104 kHz    (1.67 %)
+    noise: freq = 25.12 kHz   (73.3 %), step = 5.166 kHz    (1.67 %)
+    noise: freq = 31.62 kHz     (75 %), step = 6.504 kHz    (1.67 %)
+    noise: freq = 39.81 kHz   (76.7 %), step = 8.188 kHz    (1.67 %)
+    noise: freq = 50.12 kHz   (78.3 %), step = 10.31 kHz    (1.67 %)
+    noise: freq = 63.1 kHz      (80 %), step = 12.98 kHz    (1.67 %)
+    noise: freq = 79.43 kHz   (81.7 %), step = 16.34 kHz    (1.67 %)
+    noise: freq = 100 kHz     (83.3 %), step = 20.57 kHz    (1.67 %)
+    noise: freq = 125.9 kHz     (85 %), step = 25.89 kHz    (1.67 %)
+    noise: freq = 158.5 kHz   (86.7 %), step = 32.6 kHz     (1.67 %)
+    noise: freq = 199.5 kHz   (88.3 %), step = 41.04 kHz    (1.67 %)
+    noise: freq = 251.2 kHz     (90 %), step = 51.66 kHz    (1.67 %)
+    noise: freq = 316.2 kHz   (91.7 %), step = 65.04 kHz    (1.67 %)
+    noise: freq = 398.1 kHz   (93.3 %), step = 81.88 kHz    (1.67 %)
+    noise: freq = 501.2 kHz     (95 %), step = 103.1 kHz    (1.67 %)
+    noise: freq = 631 kHz     (96.7 %), step = 129.8 kHz    (1.67 %)
+    noise: freq = 794.3 kHz   (98.3 %), step = 163.4 kHz    (1.67 %)
+    noise: freq = 1 MHz        (100 %), step = 205.7 kHz    (1.67 %)
+Accumulated DC solution time =            483.036 us.
+Intrinsic noise analysis time =              9.22394 ms.
+Total time required for noise analysis `noise': CPU = 12.837 ms, elapsed = 9.74393 ms, util. = 132%.
+Time accumulated: CPU = 2.84084 s, elapsed = 2.8348 s.
+Peak resident memory used = 219 Mbytes.
+
+Licensing Information:
+Lic Summary:
+[22:04:55.286411] Cdslmd servers:/eda/cadence/license.dat
+[22:04:55.286437] Feature usage summary:
+[22:04:55.286438] Virtuoso_Spectre
+
+
+Aggregate audit (10:04:55 PM, Fri Jun 5, 2026):
+Time used: CPU = 2.85 s, elapsed = 2.85 s, util. = 100%.
+Time spent in licensing: elapsed = 251 ms, percentage of total = 8.82%.
+Peak memory used = 218 Mbytes.
+Simulation started at: 10:04:52 PM, Fri Jun 5, 2026, ended at: 10:04:55 PM, Fri Jun 5, 2026, with elapsed time (wall clock): 2.85 s.
+spectre completes with 0 errors, 0 warnings, and 2 notices.

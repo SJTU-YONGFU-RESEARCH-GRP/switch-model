@@ -54,6 +54,14 @@ def main() -> None:
         raise SystemExit(str(exc)) from exc
 
     engine = resolve_engine_label(args.simulator)
+    ron_source = args.simulator
+    if args.simulator == "spectre":
+        if (out_dir / "logs" / "spectre_ron_fallback.log").is_file():
+            ron_source = "python_fallback"
+        else:
+            ron_source = "spectre_va"
+    elif args.simulator == "ngspice":
+        ron_source = "ngspice_behavioral"
     write_ron_csv(out_dir / "ron_sweep.csv", result["vin_v"], result["ron_ohm"])
     plot_ron_sweep(
         result["vin_v"],
@@ -62,7 +70,15 @@ def main() -> None:
         title=f"Signal-dependent Ron ({engine})",
         switch_type=cfg.switch_type.value,
     )
-    write_metrics_json(out_dir / "switch_metrics.json", build_switch_metrics(cfg, ron=result))
+    write_metrics_json(
+        out_dir / "switch_metrics.json",
+        build_switch_metrics(
+            cfg,
+            ron=result,
+            engine=args.simulator,
+            ron_source=ron_source,
+        ),
+    )
     write_ron_report(
         out_dir / "RON_REPORT.md",
         switch_type=cfg.switch_type.value,

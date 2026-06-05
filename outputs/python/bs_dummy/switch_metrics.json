@@ -7,16 +7,20 @@
     "cp1_f": 5e-14,
     "cp2_f": 5e-14
   },
+  "engine": "python",
+  "ron_source": "python",
   "ron": {
     "ron_min_ohm": 200.0,
     "ron_max_ohm": 200.0,
     "ron_at_vcm_ohm": 200.0,
     "linearity_error_pct": 0.0
   },
+  "noise_source": "python",
   "noise": {
-    "flicker_corner_hz": 754.4760954208251,
+    "flicker_corner_hz": 754.4760954208253,
     "noise_at_1hz_v_per_sqrt_hz": 5.003312460360637e-08
   },
+  "parasitics_source": "python",
   "charge_injection": {
     "q_inj_coulomb": 4.5000000000000004e-14,
     "v_inj_v": 0.042857142857142864,

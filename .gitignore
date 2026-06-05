@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Simulation outputs (regenerate via scripts/)
+outputs/
+
+# Local ngspice scratch
+.tmp_ngtest/
+
+# Cadence Spectre / ngspice artifacts
+*.ahdlSimDB/
+*.raw
+*.psf
+*.log
+status

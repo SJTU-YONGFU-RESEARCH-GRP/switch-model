@@ -1,0 +1,59 @@
+ahdlcmicompile: Compiling ahdlcmi in ./ron_sweep_fixed_test.ahdlSimDB//d6ce7e0c69080766ec47789190d3e7b9.test_fixed_ron.ahdlcmi/Linux-64/ for Linux-64 with optimize using gcc on Fri Jun  5 18:12:19 CST 2026 [5.0]
+ahdlcmicompile: Generating makefile
+PATH:  /eda/cadence/SPECTRE241/bin:/eda/cadence/SPECTRE241/tools/bin/64bit:/eda/cadence/SPECTRE241/tools/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/home/yongfu/proj/switch-model/.venv/bin:/usr/local/balsa/bin:/usr/local/cuda/bin:/home/yongfu/.local/bin:/home/yongfu/bin:/usr/local/balsa/bin:/usr/share/Modules/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/bin
+LD_LIBRARY_PATH:  /eda/cadence/SPECTRE241/tools/TPtools/libstdc++6/lib/64bit:/eda/cadence/SPECTRE241/tools/TPtools/cuda/lib64:/eda/cadence/SPECTRE241/tools/giganta/lib/64bit:/eda/cadence/SPECTRE241/tools/mdl/lib/64bit:/eda/cadence/SPECTRE241/tools/mmsim/lib/64bit:/eda/cadence/SPECTRE241/tools/hdf/lib/64bit:/eda/cadence/SPECTRE241/tools/python/64bit/lib:/eda/cadence/SPECTRE241/tools/inca/lib/64bit:/eda/cadence/SPECTRE241/tools/awrmwo/lib/64bit:/eda/cadence/SPECTRE241/tools/spectre/lib/64bit:/eda/cadence/SPECTRE241/tools/dfII/lib/64bit:/eda/cadence/SPECTRE241/tools/TPtools/libstdc++/lib64:/eda/cadence/SPECTRE241/tools/TPtools/zlib/lib64:/eda/cadence/SPECTRE241/tools/TPtools/abseil/lib64:/eda/cadence/SPECTRE241/tools/TPtools/grpc/lib64:/eda/cadence/SPECTRE241/tools/TPtools/protobuf/lib64:/eda/cadence/SPECTRE241/tools/TPtools/libffi/lib64:/eda/cadence/SPECTRE241/tools/fmc/lib/64bit:/eda/cadence/SPECTRE241/tools/lib/64bit:/eda/cadence/SPECTRE241/tools/lib/64bit:/eda/cadence/SPECTRE241/tools/lib:/eda/cadence/SPECTRE241/tools/lib/64bit/RHEL/RHEL9:/usr/local/balsa/lib:/usr/local/lib:/usr/local/balsa/lib:/usr/local/lib
+/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/bin/gnumake -j1 -f GNUmakefile
+Cleaning ./obj/optimize/5.0
+rm -f -rf ./obj/optimize/5.0
+Compiling C file test_fixed_ron.c (optimize)
+/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /eda/cadence/SPECTRE241/tools.lnx86/cdsgcc/gcc/12.3/bin/gcc  -ffast-math  -fno-unsafe-math-optimizations -Wno-error=int-conversion -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include -c test_fixed_ron.c -o obj/optimize/5.0/test_fixed_ron.o || rm -f -f obj/optimize/5.0/test_fixed_ron.o
+<stdin>: In function 'test_fixed_ron_DcFuncDerLoad':
+<stdin>:139:49: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [-Wint-conversion]
+In file included from <stdin>:24:
+/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2300:62: note: expected 'void *' but argument is of type 'long int'
+ 2300 | ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+      |                                                              ^~~~~~
+<stdin>: In function 'test_fixed_ron_TranFuncDerLoad':
+<stdin>:337:49: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [-Wint-conversion]
+/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2300:62: note: expected 'void *' but argument is of type 'long int'
+ 2300 | ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+      |                                                              ^~~~~~
+<stdin>: In function 'test_fixed_ron_pGetInstanceParams':
+<stdin>:1316:41: warning: implicit declaration of function 'devGetInstKnotStatus'; did you mean 'devGetInstState'? [-Wimplicit-function-declaration]
+<stdin>: In function 'test_fixed_ron_pDC_Load':
+<stdin>:1600:41: warning: passing argument 1 of 'aslDevFillZeorDiagonalElemet' makes pointer from integer without a cast [-Wint-conversion]
+/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2884:63: note: expected 'void *' but argument is of type 'long int'
+ 2884 | ASL_FUNC_DECL_START extern void aslDevFillZeorDiagonalElemet( void *, int, unsigned int, struct ahdlFuncModeParam * );
+      |                                                               ^~~~~~
+<stdin>: In function 'test_fixed_ron_pCompare':
+<stdin>:2012:3: warning: implicit declaration of function 'spReplaceMatrixPointer'; did you mean 'aslDevLaplaceGetMatrixPointer'? [-Wimplicit-function-declaration]
+<stdin>:2017:36: warning: assignment to 'long int' from 'long int *' makes integer from pointer without a cast [-Wint-conversion]
+<stdin>:2018:23: warning: passing argument 1 of 'memcpy' makes pointer from integer without a cast [-Wint-conversion]
+In file included from /eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include/ahdlPiCmi.h:5,
+                 from /eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:80:
+/usr/include/string.h:43:39: note: expected 'void * restrict' but argument is of type 'long int'
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~
+<stdin>:2018:57: warning: passing argument 2 of 'memcpy' makes pointer from integer without a cast [-Wint-conversion]
+/usr/include/string.h:43:70: note: expected 'const void * restrict' but argument is of type 'long int'
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                               ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+<stdin>:2020:36: warning: assignment to 'long int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+<stdin>: In function 'test_fixed_ron_pMapSignals':
+<stdin>:2080:26: warning: comparison between pointer and integer
+<stdin>: In function 'test_fixed_ron_pGetMatrixPointers':
+<stdin>:2200:33: warning: assignment to 'long int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+<stdin>: In function 'test_fixed_ron_pAnalTranLoad':
+<stdin>:2872:42: warning: passing argument 1 of 'aslDevFillZeorDiagonalElemet' makes pointer from integer without a cast [-Wint-conversion]
+/eda/cadence/SPECTRE241/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2884:63: note: expected 'void *' but argument is of type 'long int'
+ 2884 | ASL_FUNC_DECL_START extern void aslDevFillZeorDiagonalElemet( void *, int, unsigned int, struct ahdlFuncModeParam * );
+      |                                                               ^~~~~~
+<stdin>: In function 'ahdltest_fixed_ronDescInstall':
+<stdin>:3187:2: warning: implicit declaration of function 'descSetDeviceType'; did you mean 'descSetDelete'? [-Wimplicit-function-declaration]
+<stdin>:3189:2: warning: implicit declaration of function 'descSetSetContrInfoPtr' [-Wimplicit-function-declaration]
+<stdin>:3196:2: warning: implicit declaration of function 'descSetCopySignals'; did you mean 'descSetMapSignals'? [-Wimplicit-function-declaration]
+<stdin>:3220:2: warning: implicit declaration of function 'descSetVATermInfo'; did you mean 'descSetGetInfo'? [-Wimplicit-function-declaration]
+<stdin>:3221:2: warning: implicit declaration of function 'descSetGetNodeNamesForBranch'; did you mean 'test_fixed_ron_pGetNodeNamesForBranch'? [-Wimplicit-function-declaration]
+rm -f -rf test_fixed_ron.c
+/eda/cadence/SPECTRE241/tools.lnx86/cdsgcc/gcc/12.3/bin/gcc -shared -O3 -m64 -fPIC -o obj/optimize/5.0/libahdlcmi_test_fixed_ron.so ./obj/optimize/5.0/test_fixed_ron.o  -Wl,-rpath,/usr/lib -Wl,-rpath,/lib -lm -s 
+rm -f -f ./obj/optimize/5.0/test_fixed_ron.o 

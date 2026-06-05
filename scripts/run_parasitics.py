@@ -9,11 +9,15 @@ from pathlib import Path
 from switch_model.cli_helpers import (
     add_noise_args,
     add_output_args,
+    add_simulator_args,
     add_switch_args,
     build_switch_config,
+    resolve_engine_label,
 )
 from switch_model.metrics import build_switch_metrics, write_metrics_json
 from switch_model.model import simulate_parasitics
+from switch_model.ngspice_engine import NgspiceNotFoundError, simulate_parasitics_ngspice
+from switch_model.spectre_engine import SpectreNotFoundError, simulate_parasitics_spectre
 from switch_model.report import write_parasitics_report
 
 
@@ -22,6 +26,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="MOS switch parasitics testbench.")
     add_switch_args(parser)
     add_noise_args(parser)
+    add_simulator_args(parser)
     add_output_args(parser)
     args = parser.parse_args()
 
@@ -29,8 +34,35 @@ def main() -> None:
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    result = simulate_parasitics(cfg)
-    metrics = build_switch_metrics(cfg, parasitics=result)
+    parasitics_source = args.simulator
+    try:
+        if args.simulator == "python":
+            result = simulate_parasitics(cfg)
+            parasitics_source = "python"
+        elif args.simulator == "ngspice":
+            result = simulate_parasitics_ngspice(cfg, out_dir)
+            if (out_dir / "logs" / "ngspice_parasitics_fallback.log").is_file():
+                parasitics_source = "python_fallback"
+            else:
+                parasitics_source = "ngspice_behavioral"
+        elif args.simulator == "spectre":
+            result = simulate_parasitics_spectre(cfg, out_dir)
+            if (out_dir / "logs" / "spectre_parasitics_fallback.log").is_file():
+                parasitics_source = "python_fallback"
+            else:
+                parasitics_source = "spectre_behavioral"
+        else:
+            raise ValueError(f"Unknown simulator: {args.simulator}")
+    except (NgspiceNotFoundError, SpectreNotFoundError) as exc:
+        raise SystemExit(str(exc)) from exc
+
+    engine = resolve_engine_label(args.simulator)
+    metrics = build_switch_metrics(
+        cfg,
+        parasitics=result,
+        engine=args.simulator,
+        parasitics_source=parasitics_source,
+    )
     write_metrics_json(out_dir / "switch_metrics.json", metrics)
 
     charge = result["charge"]
@@ -45,6 +77,7 @@ def main() -> None:
         attenuation_db=feed.attenuation_db,
     )
     print(f"Switch type: {cfg.switch_type.value}")
+    print(f"Engine: {engine} (parasitics_source={parasitics_source})")
     print(f"Charge injection: Q={charge.q_inj_coulomb:.3e} C, V_inj={charge.v_inj_v:.3e} V")
     print(f"Dummy reduction: {charge.dummy_reduction_pct:.1f} %")
     print(

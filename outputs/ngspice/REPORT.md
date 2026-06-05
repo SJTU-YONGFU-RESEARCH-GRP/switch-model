@@ -1,6 +1,6 @@
 # switch-model — simulation summary
 
-- **Generated:** 2026-06-05 09:48:19 UTC
+- **Generated:** 2026-06-05 14:04:29 UTC
 - **Output root:** `ngspice/`
 
 Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWCAS 2021.
@@ -10,7 +10,7 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 | Type | Label | Ron@Vcm (Ω) | Linearity err (%) | Flicker corner (Hz) | V_inj (mV) | V_cf (mV) |
 | --- | --- | --- | --- | --- | --- | --- |
 | `nmos` | NS | 9646 | 6.107e+05 | 15.09 | 85.71 | 41.86 |
-| `pmos` | PMOS | 1.000e+12 | 0 | N/A | 85.71 | 41.86 |
+| `pmos` | PMOS | 1.384e+04 | 8.143e+05 | 11.32 | 85.71 | 41.86 |
 | `cmos` | TG | 5684 | 1543 | 26.41 | 85.71 | 41.86 |
 | `nmos_dummy` | NS-D | 9646 | 6.107e+05 | 15.09 | 42.86 | 78.26 |
 | `bs` | BS | 200 | 0 | 754.5 | 85.71 | 41.86 |

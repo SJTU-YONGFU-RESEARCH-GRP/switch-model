@@ -16,6 +16,10 @@ def build_switch_metrics(
     ron: RonSimulationResult | None = None,
     noise: NoiseSimulationResult | None = None,
     parasitics: ParasiticSimulationResult | None = None,
+    engine: str | None = None,
+    ron_source: str | None = None,
+    noise_source: str | None = None,
+    parasitics_source: str | None = None,
 ) -> dict[str, Any]:
     """Build metrics dictionary for JSON export."""
     report: dict[str, Any] = {
@@ -23,6 +27,14 @@ def build_switch_metrics(
         "fch_hz": cfg.fch_hz,
         "parasitics": cfg.effective_parasitic_caps(),
     }
+    if engine is not None:
+        report["engine"] = engine
+    if ron_source is not None:
+        report["ron_source"] = ron_source
+    if noise_source is not None:
+        report["noise_source"] = noise_source
+    if parasitics_source is not None:
+        report["parasitics_source"] = parasitics_source
     if ron is not None:
         report["ron"] = {
             "ron_min_ohm": ron["metrics"].ron_min_ohm,

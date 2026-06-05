@@ -9,7 +9,7 @@ from numpy.typing import NDArray
 
 from switch_model.config import SwitchConfig
 from switch_model.io import linear_voltage_sweep, log_frequency_sweep
-from switch_model.noise import channel_noise_density, flicker_corner_hz
+from switch_model.noise import channel_noise_density, flicker_corner_from_spectrum
 from switch_model.parasitics import (
     ChargeInjectionMetrics,
     ClockFeedthroughMetrics,
@@ -66,7 +66,7 @@ def simulate_noise(cfg: SwitchConfig) -> NoiseSimulationResult:
     return NoiseSimulationResult(
         frequency_hz=f,
         noise_v_per_sqrt_hz=spectrum,
-        flicker_corner_hz=flicker_corner_hz(cfg, v_in=vcm, v_out=vcm),
+        flicker_corner_hz=flicker_corner_from_spectrum(f, spectrum, cfg=cfg),
     )
 
 

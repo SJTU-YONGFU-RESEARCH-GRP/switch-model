@@ -1,0 +1,36 @@
+HEADER
+"PSFversion" "1.00"
+"Log Generator" "drlLog rev. 1.0"
+"Log Time Stamp" "Fri Jun  5 22:04:51 2026"
+"psfversion" "1.4.0"
+"simulator" "spectre"
+"version" "24.1.0.167.isr2"
+"date" "10:04:51 PM, Fri Jun 5, 2026"
+"design" "// Ron DC sweep — Spectre + Verilog-A configurable_switch"
+"signalNameType" "spectre"
+"simMode" "Spectre"
+"measdgt" 0
+"ingold" 2
+"sst2usecolon" 0
+TYPE
+"analysisInst" STRUCT(
+"analysisType" STRING *
+"dataFile" STRING *
+"format" STRING *
+"parent" STRING *
+"sweepVariable" ARRAY ( * ) STRING *
+"description" STRING *
+)
+VALUE
+"dc-dc" "analysisInst" (
+"dc"
+"dc.dc"
+"PSF"
+""
+("dc")
+"DC Analysis `dc': Vin:dc = (0 V -> 1.8 V)"
+) PROP(
+"data_type" "scalar"
+)
+
+END

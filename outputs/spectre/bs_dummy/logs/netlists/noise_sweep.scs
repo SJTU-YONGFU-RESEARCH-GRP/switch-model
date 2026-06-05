@@ -1,0 +1,52 @@
+// Channel noise at VCM — Spectre + Verilog-A configurable_switch
+// Reference: Zhou et al., NEWCAS 2021
+
+simulator lang=spectre
+
+ahdl_include "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va"
+
+parameters switch_kind=5
+parameters vth_n_v=0.4
+parameters vth_p_v=-0.4
+parameters k_n=2e-05
+parameters k_p=1.5e-05
+parameters ratio=10
+parameters ron_bs_ohm=200
+parameters roff_ohm=1e+12
+parameters vdd_v=1.8
+parameters vclk_v=1.8
+parameters vclk_bar_v=0
+parameters vin_vcm_v=0.9
+parameters cgs_f=2.5e-14
+parameters cgd_f=2.5e-14
+parameters cp1_f=2.5e-14
+parameters cp2_f=2.5e-14
+parameters cgs_dummy_f=2.5e-14
+parameters cgd_dummy_f=2.5e-14
+parameters en_flicker_1hz_v_per_sqrt_hz=5e-08
+parameters en_flicker_ef=1
+parameters kf=1e-24
+parameters af=1
+parameters enable_noise=1
+parameters f_start=1
+parameters f_stop=1000000
+parameters dec=10
+
+V0 (vdd 0) vsource dc=vdd_v
+V1 (vss 0) vsource dc=0
+Vclk (clk 0) vsource dc=vclk_v type=dc
+Vclkb (clkbar 0) vsource dc=vclk_bar_v type=dc
+Vin (in 0) vsource dc=vin_vcm_v type=dc
+
+N1 (in out clk clkbar vdd vss) configurable_switch \
+    SWITCH_KIND=switch_kind VTH_N_V=vth_n_v VTH_P_V=vth_p_v \
+    K_N=k_n K_P=k_p RATIO=ratio RON_BS_OHM=ron_bs_ohm ROFF_OHM=roff_ohm \
+    VDD_V=vdd_v CGS_F=cgs_f CGD_F=cgd_f CP1_F=cp1_f CP2_F=cp2_f \
+    CGS_DUMMY_F=cgs_dummy_f CGD_DUMMY_F=cgd_dummy_f \
+    EN_FLICKER_1HZ_V_PER_SQRT_HZ=en_flicker_1hz_v_per_sqrt_hz \
+    EN_FLICKER_EF=en_flicker_ef KF=kf AF=af ENABLE_NOISE=enable_noise
+
+Rload (out 0) resistor r=1e12
+
+save out
+noise noise start=f_start stop=f_stop dec=dec oprobe=N1 iprobe=Vin annotate=status

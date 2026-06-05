@@ -1,0 +1,22 @@
+* Parasitic metrics — charge injection and clock feedthrough (ngspice .control).
+*
+* Macromodel equations match ``switch_model.parasitics``; values are rendered as
+* numeric literals so the engine only runs ngspice and parses ``parasitics.raw``.
+*
+* Run via: python scripts/run_parasitics.py --simulator ngspice
+
+.title switch_model_ngspice_parasitics_bench
+
+Rdummy 1 0 1
+.op
+.control
+run
+let q_inj = 4.5e-14
+let v_inj = 0.0428571428571
+let v_cf = 0.0782608695652
+let atten_db = -27.2345567204
+let dummy_reduction_pct = 50
+wrdata parasitics.raw q_inj v_inj v_cf atten_db dummy_reduction_pct
+.endc
+
+.end

@@ -1,0 +1,32 @@
+* Channel noise at VCM — ngspice .noise (thermal) + .control flicker merge.
+*
+* Flicker 1/f density is computed inside ngspice control (no Python post-merge).
+* Run via: python scripts/run_noise.py --simulator ngspice
+
+.title switch_model_ngspice_noise_sweep
+
+.param vclk_v=1.8
+.param vclk_bar_v=0
+.param vin_vcm_v=0.9
+.param ron_ohm=10000
+
+Vclk clk 0 DC {vclk_v}
+Vclkb clkbar 0 DC {vclk_bar_v}
+Vin in 0 DC {vin_vcm_v}
+Vac vac 0 DC 0 AC 1
+
+* Channel resistance at VCM bias (thermal noise from R).
+Rsw in out {ron_ohm}
+Rload out 0 1e12
+
+.ac dec 10 1 1000000
+.noise V(out) Vac dec 10 1 1000000
+.control
+run
+setplot noise1
+let flicker = (5e-08) / (frequency ^ (0.5))
+let total = sqrt(onoise_spectrum * onoise_spectrum + flicker * flicker)
+wrdata noise_spectrum.raw frequency total
+.endc
+
+.end

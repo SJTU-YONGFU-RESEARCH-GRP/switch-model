@@ -1,6 +1,6 @@
 # nmos (NS)
 
-- **Generated:** 2026-06-05 09:48:19 UTC
+- **Generated:** 2026-06-05 14:04:29 UTC
 
 ## Bench reports
 

@@ -1,0 +1,134 @@
+
+Spectre (R) Circuit Simulator
+Version 24.1.0.167.isr2 64bit -- 28 Nov 2024
+Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: yongfu   Host: river   HostID: 7F0100   PID: 2750315
+Memory  available: 356.6363 GB  physical: 405.0724 GB
+Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
+CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
+        Socket: Processors [Frequency] (Hyperthreaded Processor)
+        0:       0 [3022.5] ( 24 ),  1 [3022.0] ( 25 ),  2 [3300.0] ( 26 )
+                 3 [3300.0] ( 27 ),  4 [3300.0] ( 28 ),  5 [3300.0] ( 29 )
+                 6 [3300.0] ( 30 ),  7 [3300.0] ( 31 ),  8 [3300.0] ( 32 )
+                 9 [3300.0] ( 33 ), 10 [3300.0] ( 34 ), 11 [3028.1] ( 35 )
+        1:      12 [2908.6] ( 36 ), 13 [2933.2] ( 37 ), 14 [2991.4] ( 38 )
+                15 [3300.0] ( 39 ), 16 [2903.4] ( 40 ), 17 [3300.0] ( 41 )
+                18 [3300.0] ( 42 ), 19 [3300.0] ( 43 ), 20 [3097.4] ( 44 )
+                21 [3300.0] ( 45 ), 22 [3141.3] ( 46 ), 23 [3300.0] ( 47 )
+        
+System load averages (1min, 5min, 15min) : 20.4 %, 44.7 %, 72.6 %
+Hyperthreading is enabled
+
+
+Simulating `/home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists/parasitics_bench.scs' on river at 10:04:47 PM, Fri Jun 5, 2026 (process id: 2750315).
+Current working directory: /home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists
+Command line:
+    /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
+        /home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists/parasitics_bench.scs  \
+        +log spectre_parasitics.log
+
+Licensing Information:
+[22:04:47.080281] Configured Lic search path (24.01-s002): /eda/cadence/license.dat
+
+Licensing Information:
+[22:04:47.064297] Periodic Lic check successful
+
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_I_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /home/yongfu/proj/switch-model/outputs/spectre/pmos/logs/netlists/parasitics_bench.scs
+Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
+Time for NDB Parsing: CPU = 167.944 ms, elapsed = 371.84 ms.
+Time accumulated: CPU = 260.734 ms, elapsed = 371.842 ms.
+Peak resident memory used = 189 Mbytes.
+
+Time for Elaboration: CPU = 33.559 ms, elapsed = 16.6502 ms.
+Time accumulated: CPU = 294.393 ms, elapsed = 388.592 ms.
+Peak resident memory used = 198 Mbytes.
+
+
+Time for EDB Visiting: CPU = 347 us, elapsed = 347.853 us.
+Time accumulated: CPU = 294.845 ms, elapsed = 389.044 ms.
+Peak resident memory used = 199 Mbytes.
+
+
+Notice from spectre during topology check.
+    Only one connection to the following 5 nodes:
+        mq
+        mv
+        mcf
+        matt
+        md
+        Further occurrences of this notice will be suppressed.
+
+
+Netlist title:
+        // Parasitic metrics — charge injection and clock feedthrough (Spectre DC export).
+
+
+Global user options:
+
+Scoped user options:
+
+Circuit inventory:
+              nodes 5
+            vsource 5     
+
+Analysis and control statement inventory:
+                 dc 1     
+
+Output statements:
+             .probe 0     
+           .measure 0     
+               save 1     
+
+Time for parsing: CPU = 15.613 ms, elapsed = 13.6478 ms.
+Time accumulated: CPU = 310.532 ms, elapsed = 402.765 ms.
+Peak resident memory used = 202 Mbytes.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Pre-Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+
+******************
+DC Analysis `dcOp'
+******************
+
+Opening the PSF file ./parasitics_bench.raw/dcOp.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+
+Maximum value achieved for any signal of each quantity: 
+V: V(mq) = 90 V
+I: I(Vm_q:p) = 0 A
+Convergence achieved in 2 iterations.
+DC simulation time: CPU = 4.377 ms, elapsed = 2.94304 ms.
+Total time required for dc analysis `dcOp': CPU = 4.427 ms, elapsed = 2.99001 ms, util. = 148%.
+Time accumulated: CPU = 336.757 ms, elapsed = 416.597 ms.
+Peak resident memory used = 205 Mbytes.
+
+Licensing Information:
+Lic Summary:
+[22:04:47.160952] Cdslmd servers:/eda/cadence/license.dat
+[22:04:47.685269] Feature usage summary:
+[22:04:47.685270] Virtuoso_Spectre
+
+
+Aggregate audit (10:04:47 PM, Fri Jun 5, 2026):
+Time used: CPU = 340 ms, elapsed = 419 ms, util. = 81.1%.
+Time spent in licensing: elapsed = 252 ms, percentage of total = 60.2%.
+Peak memory used = 206 Mbytes.
+Simulation started at: 10:04:47 PM, Fri Jun 5, 2026, ended at: 10:04:47 PM, Fri Jun 5, 2026, with elapsed time (wall clock): 419 ms.
+spectre completes with 0 errors, 0 warnings, and 2 notices.

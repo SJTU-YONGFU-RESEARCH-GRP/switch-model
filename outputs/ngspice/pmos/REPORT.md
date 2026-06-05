@@ -1,6 +1,6 @@
 # pmos (PMOS)
 
-- **Generated:** 2026-06-05 09:48:19 UTC
+- **Generated:** 2026-06-05 14:04:29 UTC
 
 ## Bench reports
 
@@ -22,9 +22,9 @@
 
 | Metric | Value |
 | --- | --- |
-| Ron min | 4886 Ω |
+| Ron min | 4758 Ω |
 | Ron max | 1.633e+06 Ω |
-| Linearity error | 8.142e+05 % |
-| Flicker corner | N/A |
+| Linearity error | 8.143e+05 % |
+| Flicker corner | 11.32 Hz |
 | V_inj | 0.08571 V |
 | V_cf | 0.04186 V |

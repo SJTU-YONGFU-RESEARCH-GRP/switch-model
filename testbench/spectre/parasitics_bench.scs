@@ -1,0 +1,25 @@
+// Parasitic metrics — charge injection and clock feedthrough (Spectre DC export).
+//
+// Macromodel equations match ``switch_model.parasitics``; values are rendered as
+// numeric literals on probe nodes so Spectre runs natively and PSF scalars are
+// parsed by ``read_spectre_parasitics_psf``.
+//
+// Run via: python scripts/run_parasitics.py --simulator spectre
+
+simulator lang=spectre
+
+parameters q_inj_c=PLACEHOLDER_Q_INJ_C
+parameters v_inj_v=PLACEHOLDER_V_INJ_V
+parameters v_cf_v=PLACEHOLDER_V_CF_V
+parameters atten_db=PLACEHOLDER_ATTEN_DB
+parameters dummy_reduction_pct=PLACEHOLDER_DUMMY_REDUCTION_PCT
+parameters q_metric_scale=1e15
+
+Vm_q (mq 0) vsource dc=(q_inj_c * q_metric_scale) type=dc
+Vm_v (mv 0) vsource dc=v_inj_v type=dc
+Vm_cf (mcf 0) vsource dc=v_cf_v type=dc
+Vm_att (matt 0) vsource dc=atten_db type=dc
+Vm_dummy (md 0) vsource dc=dummy_reduction_pct type=dc
+
+save mq mv mcf matt md
+dcOp dc
