@@ -6,7 +6,7 @@
 
 Configurable **MOS switch** behavioral models with Python and Verilog-A, following the chopper-amplifier switch analysis in Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWCAS 2021.
 
-**Related work:** This package complements [opamp-model](../opamp-model/) (amplifier macromodel). The paper is included under [docs/](docs/Flicker_Noise_Analysis_on_Chopper_Amplifier.pdf) for citation in this repository.
+The paper is included under [docs/](docs/Flicker_Noise_Analysis_on_Chopper_Amplifier.pdf) for citation in this repository.
 
 ## Features
 
