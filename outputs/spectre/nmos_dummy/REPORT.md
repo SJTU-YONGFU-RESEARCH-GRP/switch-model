@@ -1,6 +1,6 @@
 # nmos_dummy (NS-D)
 
-- **Generated:** 2026-06-05 14:05:23 UTC
+- **Generated:** 2026-06-05 17:05:52 UTC
 
 ## Bench reports
 
@@ -17,6 +17,10 @@
 ![Channel noise spectrum](noise_spectrum.svg)
 
 *Channel noise spectrum*
+
+![Parasitics summary](parasitics_summary.svg)
+
+*Parasitics summary*
 
 ## Metrics
 

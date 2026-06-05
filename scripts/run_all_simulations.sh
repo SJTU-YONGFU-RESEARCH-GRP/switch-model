@@ -35,15 +35,10 @@ if [[ -z "${LM_LICENSE_FILE:-}" && -f /eda/cadence/license.dat ]]; then
     export LM_LICENSE_FILE=/eda/cadence/license.dat
 fi
 
-if [[ -f "${ROOT_DIR}/.venv/bin/activate" ]]; then
-    # shellcheck disable=SC1091
-    source "${ROOT_DIR}/.venv/bin/activate"
-fi
+# shellcheck disable=SC1091
+source "${ROOT_DIR}/scripts/ensure_python_env.sh"
 
 PYTHON="${ROOT_DIR}/.venv/bin/python"
-if [[ ! -x "${PYTHON}" ]]; then
-    PYTHON="python3"
-fi
 
 run_engine() {
     local engine="$1"

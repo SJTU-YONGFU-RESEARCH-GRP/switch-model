@@ -1,11 +1,11 @@
 HEADER
 "PSFversion" "1.00"
 "Log Generator" "drlLog rev. 1.0"
-"Log Time Stamp" "Fri Jun  5 22:04:47 2026"
+"Log Time Stamp" "Sat Jun  6 01:05:33 2026"
 "psfversion" "1.4.0"
 "simulator" "spectre"
 "version" "24.1.0.167.isr2"
-"date" "10:04:47 PM, Fri Jun 5, 2026"
+"date" "1:05:33 AM, Sat Jun 6, 2026"
 "design" "// Parasitic metrics — charge injection and clock feedthrough (Spectre DC export)."
 "signalNameType" "spectre"
 "simMode" "Spectre"

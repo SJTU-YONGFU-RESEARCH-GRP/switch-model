@@ -1,11 +1,11 @@
 HEADER
 "PSFversion" "1.00"
 "Log Generator" "drlLog rev. 1.0"
-"Log Time Stamp" "Fri Jun  5 22:04:41 2026"
+"Log Time Stamp" "Sat Jun  6 01:05:29 2026"
 "psfversion" "1.4.0"
 "simulator" "spectre"
 "version" "24.1.0.167.isr2"
-"date" "10:04:41 PM, Fri Jun 5, 2026"
+"date" "1:05:29 AM, Sat Jun 6, 2026"
 "design" "// Ron DC sweep — Spectre + Verilog-A configurable_switch"
 "signalNameType" "spectre"
 "simMode" "Spectre"

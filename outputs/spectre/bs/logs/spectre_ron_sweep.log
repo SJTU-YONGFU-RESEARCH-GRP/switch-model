@@ -9,73 +9,65 @@ Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved
 Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA
         Security, Inc.
 
-User: yongfu   Host: river   HostID: 7F0100   PID: 2752415
-Memory  available: 356.5018 GB  physical: 405.0724 GB
+User: yongfu   Host: river   HostID: 7F0100   PID: 3047259
+Memory  available: 359.8952 GB  physical: 405.0724 GB
 Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
 CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
         Socket: Processors [Frequency] (Hyperthreaded Processor)
-        0:       0 [3300.0] ( 24 ),  1 [3300.0] ( 25 ),  2 [1317.2] ( 26 )
-                 3 [3300.0] ( 27 ),  4 [3300.0] ( 28 ),  5 [3300.0] ( 29 )
-                 6 [3300.0] ( 30 ),  7 [3300.0] ( 31 ),  8 [3300.0] ( 32 )
-                 9 [3300.0] ( 33 ), 10 [3300.0] ( 34 ), 11 [1407.9] ( 35 )
+        0:       0 [3300.0] ( 24 ),  1 [3300.0] ( 25 ),  2 [3300.0] ( 26 )
+                 3 [3300.0] ( 27 ),  4 [3300.0] ( 28 ),  5 [2969.6] ( 29 )
+                 6 [3296.4] ( 30 ),  7 [2914.6] ( 31 ),  8 [3300.0] ( 32 )
+                 9 [3300.0] ( 33 ), 10 [3300.0] ( 34 ), 11 [3300.0] ( 35 )
         1:      12 [3300.0] ( 36 ), 13 [3300.0] ( 37 ), 14 [3300.0] ( 38 )
                 15 [3300.0] ( 39 ), 16 [3300.0] ( 40 ), 17 [3300.0] ( 41 )
-                18 [3096.4] ( 42 ), 19 [3300.0] ( 43 ), 20 [3218.8] ( 44 )
-                21 [3186.3] ( 45 ), 22 [3300.0] ( 46 ), 23 [3300.0] ( 47 )
+                18 [3300.0] ( 42 ), 19 [3300.0] ( 43 ), 20 [3300.0] ( 44 )
+                21 [3299.7] ( 45 ), 22 [3300.0] ( 46 ), 23 [3300.2] ( 47 )
         
-System load averages (1min, 5min, 15min) : 16.5 %, 42.7 %, 71.5 %
+System load averages (1min, 5min, 15min) : 20.2 %, 7.4 %, 5.4 %
 Hyperthreading is enabled
 
 
 Simulating
-        `/home/yongfu/proj/switch-model/outputs/spectre/bs/logs/netlists/ron_sweep.scs'
-        on river at 10:05:06 PM, Fri Jun 5, 2026 (process id: 2752415).
+        `/home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs/logs/netlists/ron_sweep.scs'
+        on river at 1:05:43 AM, Sat Jun 6, 2026 (process id: 3047259).
 Current working directory:
-        /home/yongfu/proj/switch-model/outputs/spectre/bs/logs/netlists
+        /home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs/logs/netlists
 Command line:
     /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
-        /home/yongfu/proj/switch-model/outputs/spectre/bs/logs/netlists/ron_sweep.scs
+        /home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs/logs/netlists/ron_sweep.scs
         \
         +log spectre_ron.log
 Licensing Information:
-[22:05:06.080249] Configured Lic search path (24.01-s002):
+[01:05:44.080241] Configured Lic search path (24.01-s002):
         /eda/cadence/license.dat
 
 Licensing Information:
-[22:05:06.122995] Periodic Lic check successful
+[01:05:44.334601] Periodic Lic check successful
 
 Reading file: 
-        /home/yongfu/proj/switch-model/outputs/spectre/bs/logs/netlists/ron_sweep.scs
+        /home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs/logs/netlists/ron_sweep.scs
 Reading file: 
         /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
-Reading file:  /home/yongfu/proj/switch-model/veriloga/configurable_switch.va
+Reading file: 
+        /home/yongfu/proj/switch-fitting/model/switch-model/veriloga/configurable_switch.va
 Reading file: 
         /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/constants.vams
 Reading file: 
         /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+Time for NDB Parsing: CPU = 172.157 ms, elapsed = 414.71 ms.
+Time accumulated: CPU = 262.353 ms, elapsed = 414.712 ms.
+Peak resident memory used = 189 Mbytes.
 
-Notice from spectre during AHDL read-in.
-    "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va", line 18: 
-        Module configurable_switch is a compact model. As a result, it has been
-        optimized automatically for better performance. For more information on
-        compact models, refer to the Cadence Verilog-A Language Reference
-        manual.
-
-Time for NDB Parsing: CPU = 211.807 ms, elapsed = 391.637 ms.
-Time accumulated: CPU = 298.278 ms, elapsed = 391.639 ms.
-Peak resident memory used = 199 Mbytes.
-
-Compiling ahdlcmi module library for configurable_switch.
-Finished compilation in 2.26 s (elapsed) for configurable_switch.
+Existing shared object for module configurable_switch is up to date.
 Installed compiled interface for configurable_switch.
-Time for Elaboration: CPU = 2.42152 s, elapsed = 2.34522 s.
-Time accumulated: CPU = 2.71991 s, elapsed = 2.73697 s.
-Peak resident memory used = 219 Mbytes.
+Time for Elaboration: CPU = 34.281 ms, elapsed = 17.3779 ms.
+Time accumulated: CPU = 296.749 ms, elapsed = 432.204 ms.
+Peak resident memory used = 198 Mbytes.
 
 
-Time for EDB Visiting: CPU = 1.92 ms, elapsed = 927.925 us.
-Time accumulated: CPU = 2.72195 s, elapsed = 2.73801 s.
-Peak resident memory used = 220 Mbytes.
+Time for EDB Visiting: CPU = 1.527 ms, elapsed = 533.104 us.
+Time accumulated: CPU = 298.403 ms, elapsed = 432.864 ms.
+Peak resident memory used = 199 Mbytes.
 
 
 Netlist title:
@@ -105,9 +97,9 @@ Notice from spectre during initial setup.
     1 resistor is changed to resistance form because its value is less than
         'rthresh'.
 
-Time for parsing: CPU = 15.992 ms, elapsed = 14.0469 ms.
-Time accumulated: CPU = 2.73802 s, elapsed = 2.75214 s.
-Peak resident memory used = 224 Mbytes.
+Time for parsing: CPU = 16.639 ms, elapsed = 14.5121 ms.
+Time accumulated: CPU = 315.124 ms, elapsed = 447.457 ms.
+Peak resident memory used = 203 Mbytes.
 
 ~~~~~~~~~~~~~~~~~~~~~~
 Pre-Simulation Summary
@@ -132,27 +124,27 @@ Important parameter values:
 Maximum value achieved for any signal of each quantity: 
 V: V(in) = 1.8 V
 I: I(Vin:p) = 9 mA
-DC simulation time: CPU = 9.708 ms, elapsed = 5.481 ms.
+DC simulation time: CPU = 10.442 ms, elapsed = 6.05083 ms.
 
 Notice from spectre at dc = 1.8 V during DC analysis `dc'.
     The value of parameter 'dc' has been reset to the original value 0.
 
-Total time required for dc analysis `dc': CPU = 9.758 ms, elapsed = 5.52893 ms,
-        util. = 176%.
-Time accumulated: CPU = 2.77023 s, elapsed = 2.76917 s.
-Peak resident memory used = 224 Mbytes.
+Total time required for dc analysis `dc': CPU = 10.493 ms, elapsed = 6.10089
+        ms, util. = 172%.
+Time accumulated: CPU = 347.517 ms, elapsed = 464.532 ms.
+Peak resident memory used = 206 Mbytes.
 
 Licensing Information:
 Lic Summary:
-[22:05:09.099226] Cdslmd servers:/eda/cadence/license.dat
-[22:05:09.099247] Feature usage summary:
-[22:05:09.099252] Virtuoso_Spectre
+[01:05:44.437506] Cdslmd servers:/eda/cadence/license.dat
+[01:05:44.437542] Feature usage summary:
+[01:05:44.437543] Virtuoso_Spectre
 
 
-Aggregate audit (10:05:09 PM, Fri Jun 5, 2026):
-Time used: CPU = 2.77 s, elapsed = 2.77 s, util. = 100%.
-Time spent in licensing: elapsed = 252 ms, percentage of total = 9.1%.
-Peak memory used = 223 Mbytes.
-Simulation started at: 10:05:06 PM, Fri Jun 5, 2026, ended at: 10:05:09 PM, Fri
-        Jun 5, 2026, with elapsed time (wall clock): 2.77 s.
-spectre completes with 0 errors, 0 warnings, and 4 notices.
+Aggregate audit (1:05:44 AM, Sat Jun 6, 2026):
+Time used: CPU = 351 ms, elapsed = 467 ms, util. = 75%.
+Time spent in licensing: elapsed = 334 ms, percentage of total = 71.5%.
+Peak memory used = 207 Mbytes.
+Simulation started at: 1:05:43 AM, Sat Jun 6, 2026, ended at: 1:05:44 AM, Sat
+        Jun 6, 2026, with elapsed time (wall clock): 467 ms.
+spectre completes with 0 errors, 0 warnings, and 3 notices.

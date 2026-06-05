@@ -3,7 +3,7 @@
 
 simulator lang=spectre
 
-ahdl_include "/home/yongfu/proj/switch-model/veriloga/configurable_switch.va"
+ahdl_include "/home/yongfu/proj/switch-fitting/model/switch-model/veriloga/configurable_switch.va"
 
 parameters switch_kind=1
 parameters vth_n_v=0.4

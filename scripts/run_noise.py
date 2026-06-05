@@ -19,7 +19,7 @@ from switch_model.metrics import build_switch_metrics, write_metrics_json
 from switch_model.model import simulate_noise
 from switch_model.ngspice_engine import NgspiceNotFoundError, simulate_noise_ngspice
 from switch_model.plotting import plot_noise_spectrum
-from switch_model.report import write_noise_report
+from switch_model.report import refresh_reports_after_bench, write_noise_report
 from switch_model.spectre_engine import SpectreNotFoundError, simulate_noise_spectre
 
 
@@ -88,6 +88,8 @@ def main() -> None:
         switch_type=cfg.switch_type.value,
         flicker_corner_hz=result["flicker_corner_hz"],
     )
+    for report_path in refresh_reports_after_bench(out_dir, switch_type=cfg.switch_type.value):
+        print(f"Updated {report_path}")
     print(f"Wrote noise results to {out_dir}")
 
 

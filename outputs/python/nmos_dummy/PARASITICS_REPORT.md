@@ -7,3 +7,5 @@
 | Dummy reduction | 50.0 % |
 | Clock feedthrough V_cf | 7.826e-02 V |
 | Feedthrough attenuation | -27.2 dB |
+
+![Parasitics summary](parasitics_summary.svg)

@@ -18,7 +18,8 @@ from switch_model.metrics import build_switch_metrics, write_metrics_json
 from switch_model.model import simulate_parasitics
 from switch_model.ngspice_engine import NgspiceNotFoundError, simulate_parasitics_ngspice
 from switch_model.spectre_engine import SpectreNotFoundError, simulate_parasitics_spectre
-from switch_model.report import write_parasitics_report
+from switch_model.plotting import plot_parasitics_summary
+from switch_model.report import refresh_reports_after_bench, write_parasitics_report
 
 
 def main() -> None:
@@ -67,6 +68,13 @@ def main() -> None:
 
     charge = result["charge"]
     feed = result["feedthrough"]
+    plot_parasitics_summary(
+        charge,
+        feed,
+        out_dir / "parasitics_summary.svg",
+        title=f"Parasitics ({engine})",
+        switch_type=cfg.switch_type.value,
+    )
     write_parasitics_report(
         out_dir / "PARASITICS_REPORT.md",
         switch_type=cfg.switch_type.value,
@@ -76,6 +84,8 @@ def main() -> None:
         v_feedthrough_v=feed.v_feedthrough_v,
         attenuation_db=feed.attenuation_db,
     )
+    for report_path in refresh_reports_after_bench(out_dir, switch_type=cfg.switch_type.value):
+        print(f"Updated {report_path}")
     print(f"Switch type: {cfg.switch_type.value}")
     print(f"Engine: {engine} (parasitics_source={parasitics_source})")
     print(f"Charge injection: Q={charge.q_inj_coulomb:.3e} C, V_inj={charge.v_inj_v:.3e} V")

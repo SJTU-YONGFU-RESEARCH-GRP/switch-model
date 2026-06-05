@@ -5,56 +5,56 @@ Copyright (C) 1989-2024 Cadence Design Systems, Inc. All rights reserved worldwi
 
 Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
 
-User: yongfu   Host: river   HostID: 7F0100   PID: 2753900
-Memory  available: 356.9628 GB  physical: 405.0724 GB
+User: yongfu   Host: river   HostID: 7F0100   PID: 3047839
+Memory  available: 359.5928 GB  physical: 405.0724 GB
 Linux   : Red Hat Enterprise Linux release 9.7 (Plow)
 CPU Type: Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz
         Socket: Processors [Frequency] (Hyperthreaded Processor)
-        0:       0 [3300.0] ( 24 ),  1 [3300.0] ( 25 ),  2 [3300.0] ( 26 )
-                 3 [3300.0] ( 27 ),  4 [2996.9] ( 28 ),  5 [3300.0] ( 29 )
+        0:       0 [3300.0] ( 24 ),  1 [2924.4] ( 25 ),  2 [2997.6] ( 26 )
+                 3 [3300.0] ( 27 ),  4 [2983.4] ( 28 ),  5 [3300.0] ( 29 )
                  6 [3300.0] ( 30 ),  7 [3300.0] ( 31 ),  8 [3300.0] ( 32 )
-                 9 [3300.0] ( 33 ), 10 [3300.0] ( 34 ), 11 [3096.8] ( 35 )
-        1:      12 [2758.8] ( 36 ), 13 [1662.0] ( 37 ), 14 [3300.0] ( 38 )
+                 9 [3300.0] ( 33 ), 10 [2946.9] ( 34 ), 11 [3300.0] ( 35 )
+        1:      12 [3300.0] ( 36 ), 13 [3300.0] ( 37 ), 14 [3299.9] ( 38 )
                 15 [3300.0] ( 39 ), 16 [3300.0] ( 40 ), 17 [3300.0] ( 41 )
                 18 [3300.0] ( 42 ), 19 [3300.0] ( 43 ), 20 [3300.0] ( 44 )
-                21 [1744.1] ( 45 ), 22 [3300.0] ( 46 ), 23 [3300.0] ( 47 )
+                21 [3300.0] ( 45 ), 22 [3039.2] ( 46 ), 23 [3134.3] ( 47 )
         
-System load averages (1min, 5min, 15min) : 12.8 %, 40.1 %, 70.0 %
+System load averages (1min, 5min, 15min) : 18.8 %, 7.3 %, 5.4 %
 Hyperthreading is enabled
 
 
-Simulating `/home/yongfu/proj/switch-model/outputs/spectre/bs_dummy/logs/netlists/parasitics_bench.scs' on river at 10:05:22 PM, Fri Jun 5, 2026 (process id: 2753900).
-Current working directory: /home/yongfu/proj/switch-model/outputs/spectre/bs_dummy/logs/netlists
+Simulating `/home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs_dummy/logs/netlists/parasitics_bench.scs' on river at 1:05:51 AM, Sat Jun 6, 2026 (process id: 3047839).
+Current working directory: /home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs_dummy/logs/netlists
 Command line:
     /eda/cadence/SPECTRE241/tools/bin/spectre -64  \
-        /home/yongfu/proj/switch-model/outputs/spectre/bs_dummy/logs/netlists/parasitics_bench.scs  \
+        /home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs_dummy/logs/netlists/parasitics_bench.scs  \
         +log spectre_parasitics.log
 
 Licensing Information:
-[22:05:22.080233] Configured Lic search path (24.01-s002): /eda/cadence/license.dat
+[01:05:51.080225] Configured Lic search path (24.01-s002): /eda/cadence/license.dat
 
 Licensing Information:
-[22:05:22.130656] Periodic Lic check successful
+[01:05:52.089251] Periodic Lic check successful
 
 Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
 Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_I_sh.so ...
 Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
 Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
 Loading /eda/cadence/SPECTRE241/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
-Reading file:  /home/yongfu/proj/switch-model/outputs/spectre/bs_dummy/logs/netlists/parasitics_bench.scs
+Reading file:  /home/yongfu/proj/switch-fitting/model/switch-model/outputs/spectre/bs_dummy/logs/netlists/parasitics_bench.scs
 Reading file:  /eda/cadence/SPECTRE241/tools.lnx86/spectre/etc/configs/spectre.cfg
-Time for NDB Parsing: CPU = 168.223 ms, elapsed = 370.224 ms.
-Time accumulated: CPU = 265.629 ms, elapsed = 370.226 ms.
-Peak resident memory used = 188 Mbytes.
+Time for NDB Parsing: CPU = 169.91 ms, elapsed = 371.258 ms.
+Time accumulated: CPU = 262.091 ms, elapsed = 371.26 ms.
+Peak resident memory used = 189 Mbytes.
 
-Time for Elaboration: CPU = 35.051 ms, elapsed = 17.194 ms.
-Time accumulated: CPU = 300.781 ms, elapsed = 387.521 ms.
-Peak resident memory used = 197 Mbytes.
-
-
-Time for EDB Visiting: CPU = 320 us, elapsed = 320.911 us.
-Time accumulated: CPU = 301.201 ms, elapsed = 387.941 ms.
+Time for Elaboration: CPU = 31.874 ms, elapsed = 15.959 ms.
+Time accumulated: CPU = 294.067 ms, elapsed = 387.321 ms.
 Peak resident memory used = 198 Mbytes.
+
+
+Time for EDB Visiting: CPU = 1.317 ms, elapsed = 366.211 us.
+Time accumulated: CPU = 295.485 ms, elapsed = 387.786 ms.
+Peak resident memory used = 199 Mbytes.
 
 
 Notice from spectre during topology check.
@@ -87,9 +87,9 @@ Output statements:
            .measure 0     
                save 1     
 
-Time for parsing: CPU = 10.534 ms, elapsed = 9.33123 ms.
-Time accumulated: CPU = 311.811 ms, elapsed = 397.347 ms.
-Peak resident memory used = 201 Mbytes.
+Time for parsing: CPU = 14.517 ms, elapsed = 13.5581 ms.
+Time accumulated: CPU = 310.084 ms, elapsed = 401.425 ms.
+Peak resident memory used = 202 Mbytes.
 
 ~~~~~~~~~~~~~~~~~~~~~~
 Pre-Simulation Summary
@@ -114,21 +114,21 @@ Maximum value achieved for any signal of each quantity:
 V: V(md) = 50 V
 I: I(Vm_q:p) = 0 A
 Convergence achieved in 2 iterations.
-DC simulation time: CPU = 4.4 ms, elapsed = 2.88582 ms.
-Total time required for dc analysis `dcOp': CPU = 4.451 ms, elapsed = 2.93493 ms, util. = 152%.
-Time accumulated: CPU = 338.146 ms, elapsed = 411.233 ms.
-Peak resident memory used = 204 Mbytes.
+DC simulation time: CPU = 4.388 ms, elapsed = 3.01409 ms.
+Total time required for dc analysis `dcOp': CPU = 4.438 ms, elapsed = 3.06392 ms, util. = 145%.
+Time accumulated: CPU = 336.34 ms, elapsed = 415.351 ms.
+Peak resident memory used = 205 Mbytes.
 
 Licensing Information:
 Lic Summary:
-[22:05:22.224560] Cdslmd servers:/eda/cadence/license.dat
-[22:05:22.748869] Feature usage summary:
-[22:05:22.748870] Virtuoso_Spectre
+[01:05:52.186913] Cdslmd servers:/eda/cadence/license.dat
+[01:05:52.186934] Feature usage summary:
+[01:05:52.186935] Virtuoso_Spectre
 
 
-Aggregate audit (10:05:22 PM, Fri Jun 5, 2026):
-Time used: CPU = 342 ms, elapsed = 414 ms, util. = 82.7%.
-Time spent in licensing: elapsed = 252 ms, percentage of total = 60.9%.
-Peak memory used = 206 Mbytes.
-Simulation started at: 10:05:22 PM, Fri Jun 5, 2026, ended at: 10:05:22 PM, Fri Jun 5, 2026, with elapsed time (wall clock): 414 ms.
+Aggregate audit (1:05:52 AM, Sat Jun 6, 2026):
+Time used: CPU = 340 ms, elapsed = 419 ms, util. = 81.3%.
+Time spent in licensing: elapsed = 252 ms, percentage of total = 60.1%.
+Peak memory used = 207 Mbytes.
+Simulation started at: 1:05:51 AM, Sat Jun 6, 2026, ended at: 1:05:52 AM, Sat Jun 6, 2026, with elapsed time (wall clock): 419 ms.
 spectre completes with 0 errors, 0 warnings, and 2 notices.

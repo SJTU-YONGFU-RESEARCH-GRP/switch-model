@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy.typing import NDArray
 
+from switch_model.parasitics import ChargeInjectionMetrics, ClockFeedthroughMetrics
+
 
 def plot_ron_sweep(
     vin_v: NDArray[np.float64],
@@ -50,6 +52,52 @@ def plot_noise_spectrum(
         ax.axvline(flicker_corner_hz, color="r", linestyle="--", label=label)
         ax.legend()
     ax.grid(True, which="both", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(path, format="svg")
+    plt.close(fig)
+
+
+def plot_parasitics_summary(
+    charge: ChargeInjectionMetrics,
+    feedthrough: ClockFeedthroughMetrics,
+    path: Path,
+    *,
+    title: str,
+    switch_type: str,
+) -> None:
+    """Plot parasitic charge and voltage metrics as bar charts and save SVG."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig, (ax_chg, ax_volt) = plt.subplots(1, 2, figsize=(10, 5))
+
+    charge_labels = ("Cgs", "Cgd", "Q total")
+    charge_fc = (
+        charge.cgs_contribution_c * 1.0e15,
+        charge.cgd_contribution_c * 1.0e15,
+        charge.q_inj_coulomb * 1.0e15,
+    )
+    ax_chg.bar(charge_labels, charge_fc, color="#0033cc", edgecolor="#002080", linewidth=1.0)
+    ax_chg.set_ylabel("Charge (fC)")
+    ax_chg.set_title("Charge injection")
+    ax_chg.grid(True, axis="y", alpha=0.3)
+
+    volt_labels = ("V_inj", "V_cf")
+    volt_mv = (charge.v_inj_v * 1.0e3, feedthrough.v_feedthrough_v * 1.0e3)
+    ax_volt.bar(volt_labels, volt_mv, color="#7f3fbf", edgecolor="#5a2d8a", linewidth=1.0)
+    ax_volt.set_ylabel("Voltage (mV)")
+    ax_volt.set_title("Injection and feedthrough")
+    ax_volt.grid(True, axis="y", alpha=0.3)
+    if charge.dummy_reduction_pct > 0.0:
+        ax_volt.text(
+            0.98,
+            0.95,
+            f"Dummy reduction: {charge.dummy_reduction_pct:.1f} %",
+            transform=ax_volt.transAxes,
+            ha="right",
+            va="top",
+            fontsize=9,
+        )
+
+    fig.suptitle(f"{title} ({switch_type})")
     fig.tight_layout()
     fig.savefig(path, format="svg")
     plt.close(fig)

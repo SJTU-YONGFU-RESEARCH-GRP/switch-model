@@ -1,6 +1,6 @@
 # cmos (TG)
 
-- **Generated:** 2026-06-05 14:04:13 UTC
+- **Generated:** 2026-06-05 17:05:05 UTC
 
 ## Bench reports
 
@@ -17,6 +17,10 @@
 ![Channel noise spectrum](noise_spectrum.svg)
 
 *Channel noise spectrum*
+
+![Parasitics summary](parasitics_summary.svg)
+
+*Parasitics summary*
 
 ## Metrics
 

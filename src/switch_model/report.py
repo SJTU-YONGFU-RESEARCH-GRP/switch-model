@@ -94,9 +94,11 @@ def write_parasitics_report(
     dummy_reduction_pct: float,
     v_feedthrough_v: float,
     attenuation_db: float,
+    svg_name: str = "parasitics_summary.svg",
 ) -> None:
     """Write parasitics bench Markdown report."""
     path.parent.mkdir(parents=True, exist_ok=True)
+    figure_block = f"\n![Parasitics summary]({svg_name})\n" if svg_name else ""
     body = f"""# Parasitics report — {switch_type}
 
 | Metric | Value |
@@ -106,8 +108,22 @@ def write_parasitics_report(
 | Dummy reduction | {dummy_reduction_pct:.1f} % |
 | Clock feedthrough V_cf | {v_feedthrough_v:.3e} V |
 | Feedthrough attenuation | {attenuation_db:.1f} dB |
-"""
+{figure_block}"""
     path.write_text(body, encoding="utf-8")
+
+
+def refresh_reports_after_bench(output_dir: Path, *, switch_type: str) -> list[Path]:
+    """Regenerate per-switch and engine-level ``REPORT.md`` after a bench run."""
+    written: list[Path] = []
+    switch_report = write_switch_type_report(output_dir, switch_type=switch_type)
+    if switch_report is not None:
+        written.append(switch_report)
+    engine_root = output_dir.parent
+    if (engine_root / "compare" / "switch_comparison.json").is_file():
+        summary = write_summary_report(engine_root)
+        if summary is not None:
+            written.append(summary)
+    return written
 
 
 def write_switch_type_report(output_dir: Path, *, switch_type: str) -> Path | None:
@@ -137,6 +153,7 @@ def write_switch_type_report(output_dir: Path, *, switch_type: str) -> Path | No
     for name, caption in (
         ("ron_sweep.svg", "Ron vs Vin"),
         ("noise_spectrum.svg", "Channel noise spectrum"),
+        ("parasitics_summary.svg", "Parasitics summary"),
     ):
         fig = output_dir / name
         if fig.is_file():
@@ -221,12 +238,14 @@ def write_summary_report(output_root: Path) -> Path | None:
     lines.extend(["", "## Figure gallery", ""])
     for stype in SWITCH_TYPES:
         sub = output_root / stype
-        ron_svg = sub / "ron_sweep.svg"
-        noise_svg = sub / "noise_spectrum.svg"
-        if ron_svg.is_file():
-            lines.append(_figure_block(f"{stype}/ron_sweep.svg", f"{stype} — Ron vs Vin"))
-        if noise_svg.is_file():
-            lines.append(_figure_block(f"{stype}/noise_spectrum.svg", f"{stype} — noise"))
+        for name, caption_suffix in (
+            ("ron_sweep.svg", "Ron vs Vin"),
+            ("noise_spectrum.svg", "noise"),
+            ("parasitics_summary.svg", "parasitics"),
+        ):
+            fig = sub / name
+            if fig.is_file():
+                lines.append(_figure_block(f"{stype}/{name}", f"{stype} — {caption_suffix}"))
 
     lines.extend(
         [
@@ -314,6 +333,26 @@ def write_engine_comparison_report(
         [
             "",
             f"**Overall:** {'PASS' if result.passed else 'FAIL'}",
+            "",
+            "## Figure gallery",
+            "",
+        ]
+    )
+    for stype in SWITCH_TYPES:
+        for engine in engines:
+            sub = output_root / engine / stype
+            for name, caption_suffix in (
+                ("ron_sweep.svg", "Ron vs Vin"),
+                ("noise_spectrum.svg", "noise spectrum"),
+                ("parasitics_summary.svg", "parasitics"),
+            ):
+                fig = sub / name
+                if fig.is_file():
+                    rel = f"{engine}/{stype}/{name}"
+                    lines.append(_figure_block(rel, f"{engine}/{stype} — {caption_suffix}"))
+
+    lines.extend(
+        [
             "",
             "Regenerate: `python scripts/compare_engines.py --output-root outputs`",
             "",

@@ -23,7 +23,7 @@ from switch_model.ngspice_engine import (
     simulate_ron_ngspice,
 )
 from switch_model.plotting import plot_ron_sweep
-from switch_model.report import write_ron_report
+from switch_model.report import refresh_reports_after_bench, write_ron_report
 from switch_model.spectre_engine import SpectreNotFoundError, simulate_ron_spectre
 
 
@@ -86,6 +86,8 @@ def main() -> None:
         ron_max_ohm=result["metrics"].ron_max_ohm,
         linearity_error_pct=result["metrics"].linearity_error_pct,
     )
+    for report_path in refresh_reports_after_bench(out_dir, switch_type=cfg.switch_type.value):
+        print(f"Updated {report_path}")
     print(f"Wrote Ron results to {out_dir}")
 
 

@@ -1,6 +1,6 @@
 # switch-model — simulation summary
 
-- **Generated:** 2026-06-05 14:05:23 UTC
+- **Generated:** 2026-06-05 17:05:52 UTC
 - **Output root:** `spectre/`
 
 Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWCAS 2021.
@@ -35,6 +35,10 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 
 *nmos — noise*
 
+![nmos — parasitics](nmos/parasitics_summary.svg)
+
+*nmos — parasitics*
+
 ![pmos — Ron vs Vin](pmos/ron_sweep.svg)
 
 *pmos — Ron vs Vin*
@@ -42,6 +46,10 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 ![pmos — noise](pmos/noise_spectrum.svg)
 
 *pmos — noise*
+
+![pmos — parasitics](pmos/parasitics_summary.svg)
+
+*pmos — parasitics*
 
 ![cmos — Ron vs Vin](cmos/ron_sweep.svg)
 
@@ -51,6 +59,10 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 
 *cmos — noise*
 
+![cmos — parasitics](cmos/parasitics_summary.svg)
+
+*cmos — parasitics*
+
 ![nmos_dummy — Ron vs Vin](nmos_dummy/ron_sweep.svg)
 
 *nmos_dummy — Ron vs Vin*
@@ -58,6 +70,10 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 ![nmos_dummy — noise](nmos_dummy/noise_spectrum.svg)
 
 *nmos_dummy — noise*
+
+![nmos_dummy — parasitics](nmos_dummy/parasitics_summary.svg)
+
+*nmos_dummy — parasitics*
 
 ![bs — Ron vs Vin](bs/ron_sweep.svg)
 
@@ -67,6 +83,10 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 
 *bs — noise*
 
+![bs — parasitics](bs/parasitics_summary.svg)
+
+*bs — parasitics*
+
 ![bs_dummy — Ron vs Vin](bs_dummy/ron_sweep.svg)
 
 *bs_dummy — Ron vs Vin*
@@ -74,6 +94,10 @@ Reference: Zhou et al., *Flicker Noise Analysis on Chopper Amplifier*, IEEE NEWC
 ![bs_dummy — noise](bs_dummy/noise_spectrum.svg)
 
 *bs_dummy — noise*
+
+![bs_dummy — parasitics](bs_dummy/parasitics_summary.svg)
+
+*bs_dummy — parasitics*
 
 
 ## Artifacts
