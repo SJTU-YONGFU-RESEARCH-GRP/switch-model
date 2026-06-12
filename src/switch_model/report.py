@@ -6,13 +6,24 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-SWITCH_TYPES = ("nmos", "pmos", "cmos", "nmos_dummy", "bs", "bs_dummy")
+SWITCH_TYPES = (
+    "nmos",
+    "pmos",
+    "cmos",
+    "nmos_dummy",
+    "pmos_dummy",
+    "cmos_dummy",
+    "bs",
+    "bs_dummy",
+)
 
 PAPER_LABELS = {
     "nmos": "NS",
     "pmos": "PMOS",
     "cmos": "TG",
     "nmos_dummy": "NS-D",
+    "pmos_dummy": "PMOS-D",
+    "cmos_dummy": "TG-D",
     "bs": "BS",
     "bs_dummy": "BS+D",
 }

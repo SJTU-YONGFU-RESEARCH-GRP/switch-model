@@ -8,7 +8,16 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_ENGINES = ("python", "ngspice", "spectre")
-SWITCH_TYPES = ("nmos", "pmos", "cmos", "nmos_dummy", "bs", "bs_dummy")
+SWITCH_TYPES = (
+    "nmos",
+    "pmos",
+    "cmos",
+    "nmos_dummy",
+    "pmos_dummy",
+    "cmos_dummy",
+    "bs",
+    "bs_dummy",
+)
 
 TOLERANCE = {
     "ron_at_vcm_ohm": 0.02,

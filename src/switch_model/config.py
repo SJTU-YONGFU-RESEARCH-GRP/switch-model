@@ -14,6 +14,8 @@ class SwitchType(str, Enum):
     PMOS = "pmos"
     CMOS = "cmos"
     NMOS_DUMMY = "nmos_dummy"
+    PMOS_DUMMY = "pmos_dummy"
+    CMOS_DUMMY = "cmos_dummy"
     BS = "bs"
     BS_DUMMY = "bs_dummy"
 
@@ -95,12 +97,17 @@ class SwitchConfig:
             "cp1_f": self.cp1_f,
             "cp2_f": self.cp2_f,
         }
-        if self.switch_type in (SwitchType.NMOS_DUMMY, SwitchType.BS_DUMMY):
+        if self.switch_type in (
+            SwitchType.NMOS_DUMMY,
+            SwitchType.PMOS_DUMMY,
+            SwitchType.CMOS_DUMMY,
+            SwitchType.BS_DUMMY,
+        ):
             caps["cgs_f"] += self.cgs_dummy_f
             caps["cgd_f"] += self.cgd_dummy_f
             caps["cp1_f"] += self.cp1_dummy_f
             caps["cp2_f"] += self.cp2_dummy_f
-        if self.switch_type == SwitchType.CMOS:
+        if self.switch_type in (SwitchType.CMOS, SwitchType.CMOS_DUMMY):
             caps["cgs_f"] *= 1.0 + self.clock_mismatch_ratio
             caps["cgd_f"] *= 1.0 + self.clock_mismatch_ratio
             caps["cp1_f"] *= 1.0 + self.clock_mismatch_ratio

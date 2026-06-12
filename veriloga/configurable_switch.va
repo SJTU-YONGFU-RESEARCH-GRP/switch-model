@@ -9,7 +9,8 @@
 //   (3) charge injection via Cgs, Cgd, Cp1, Cp2
 //   (4) clock feedthrough via Cgd overlap
 //
-// SWITCH_KIND: 0=NMOS, 1=PMOS, 2=CMOS(TG), 3=NMOS_DUMMY, 4=BS, 5=BS_DUMMY
+// SWITCH_KIND: 0=NMOS, 1=PMOS, 2=CMOS(TG), 3=NMOS_DUMMY, 4=BS, 5=BS_DUMMY,
+//              6=PMOS_DUMMY, 7=CMOS_DUMMY
 
 `include "constants.vams"
 `include "disciplines.vams"
@@ -21,7 +22,7 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
     input clk, clk_bar, vdd, vss;
     electrical in, out, clk, clk_bar, vdd, vss;
 
-    parameter integer SWITCH_KIND = 0 from [0:5];
+    parameter integer SWITCH_KIND = 0 from [0:7];
     parameter real VTH_N_V = 0.4;
     parameter real VTH_P_V = -0.4;
     parameter real K_N = 2.0e-5;
@@ -68,7 +69,7 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
 
     analog begin
         v_clk = V(clk);
-        v_clk_bar = (SWITCH_KIND == 2) ? V(clk_bar) : (VDD_V - v_clk);
+        v_clk_bar = (SWITCH_KIND == 2 || SWITCH_KIND == 7) ? V(clk_bar) : (VDD_V - v_clk);
 
         // On-resistance selection (paper Fig. 3).
         sw_on = 0;
@@ -78,7 +79,7 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
                 sw_on = 1;
                 ron = RON_BS_OHM;
             end
-        end else if (SWITCH_KIND == 1) begin
+        end else if (SWITCH_KIND == 1 || SWITCH_KIND == 6) begin
             vgs_p = v_clk - V(in);
             if (vgs_p < VTH_P_V) begin
                 vgs_p = VTH_P_V - vgs_p;
@@ -87,7 +88,7 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
                     ron = 1.0 / (K_P * RATIO * vgs_p);
                 end
             end
-        end else if (SWITCH_KIND == 2) begin
+        end else if (SWITCH_KIND == 2 || SWITCH_KIND == 7) begin
             vgs_n = v_clk - V(in) - VTH_N_V;
             vgs_p = v_clk_bar - V(in);
             r_n = ROFF_OHM;
@@ -117,7 +118,7 @@ module configurable_switch(in, out, clk, clk_bar, vdd, vss);
         // Parasitic capacitors (charge injection + clock feedthrough).
         cgs_tot = CGS_F;
         cgd_tot = CGD_F;
-        if (SWITCH_KIND == 3 || SWITCH_KIND == 5) begin
+        if (SWITCH_KIND == 3 || SWITCH_KIND == 5 || SWITCH_KIND == 6 || SWITCH_KIND == 7) begin
             cgs_tot = cgs_tot + CGS_DUMMY_F;
             cgd_tot = cgd_tot + CGD_DUMMY_F;
         end

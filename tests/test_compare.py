@@ -16,7 +16,15 @@ def test_spectre_fallback_detection(tmp_path: Path) -> None:
     assert not spectre_in_fallback_mode(tmp_path)
     (spectre / "spectre_ron_fallback.log").write_text("fallback\n", encoding="utf-8")
     assert not spectre_in_fallback_mode(tmp_path)
-    for stype in ("pmos", "cmos", "nmos_dummy", "bs", "bs_dummy"):
+    for stype in (
+        "pmos",
+        "cmos",
+        "nmos_dummy",
+        "pmos_dummy",
+        "cmos_dummy",
+        "bs",
+        "bs_dummy",
+    ):
         d = tmp_path / "spectre" / stype / "logs"
         d.mkdir(parents=True)
         (d / "spectre_ron_fallback.log").write_text("fallback\n", encoding="utf-8")

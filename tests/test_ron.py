@@ -5,9 +5,32 @@ from __future__ import annotations
 from dataclasses import replace
 
 import numpy as np
+import pytest
 
 from switch_model.config import SwitchConfig, SwitchType
 from switch_model.ron import bs_ron, cmos_ron, nmos_ron, ron_vs_vin, switch_ron
+
+
+@pytest.mark.parametrize(
+    ("base_type", "dummy_type", "vclk_v"),
+    [
+        (SwitchType.NMOS, SwitchType.NMOS_DUMMY, 1.8),
+        (SwitchType.PMOS, SwitchType.PMOS_DUMMY, 0.0),
+        (SwitchType.CMOS, SwitchType.CMOS_DUMMY, 1.8),
+    ],
+)
+def test_dummy_switch_matches_base_ron(
+    base_type: SwitchType,
+    dummy_type: SwitchType,
+    vclk_v: float,
+) -> None:
+    """Dummy variants share the same Ron law as their non-dummy counterpart."""
+    cfg = SwitchConfig(switch_type=base_type)
+    dummy = replace(cfg, switch_type=dummy_type)
+    v = 0.9
+    r_base = switch_ron(v, vclk_v, cfg)
+    r_dummy = switch_ron(v, vclk_v, dummy)
+    assert r_dummy == r_base
 
 
 def test_nmos_ron_increases_with_vin() -> None:

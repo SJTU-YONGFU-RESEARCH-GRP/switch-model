@@ -14,15 +14,17 @@ def switch_kind_id(cfg: SwitchConfig) -> int:
         SwitchType.NMOS_DUMMY: 3,
         SwitchType.BS: 4,
         SwitchType.BS_DUMMY: 5,
+        SwitchType.PMOS_DUMMY: 6,
+        SwitchType.CMOS_DUMMY: 7,
     }
     return mapping[cfg.switch_type]
 
 
 def drive_voltages(cfg: SwitchConfig) -> tuple[float, float]:
     """Return (vclk, vclk_bar) for the configured switch topology."""
-    if cfg.switch_type == SwitchType.PMOS:
+    if cfg.switch_type in (SwitchType.PMOS, SwitchType.PMOS_DUMMY):
         return cfg.vclk_low_v, cfg.vdd_v - cfg.vclk_low_v
-    if cfg.switch_type == SwitchType.CMOS:
+    if cfg.switch_type in (SwitchType.CMOS, SwitchType.CMOS_DUMMY):
         return cfg.vclk_high_v, cfg.vclk_low_v
     return cfg.vclk_high_v, cfg.vclk_low_v
 
@@ -68,11 +70,11 @@ def ngspice_ron_probe_expr(cfg: SwitchConfig) -> str:
     match cfg.switch_type:
         case SwitchType.NMOS | SwitchType.NMOS_DUMMY:
             g_expr = nmos_g
-        case SwitchType.PMOS:
+        case SwitchType.PMOS | SwitchType.PMOS_DUMMY:
             g_expr = pmos_g
         case SwitchType.BS | SwitchType.BS_DUMMY:
             g_expr = bs_g
-        case SwitchType.CMOS:
+        case SwitchType.CMOS | SwitchType.CMOS_DUMMY:
             # Parallel conductance: g = g_n + g_p (avoid division by zero).
             pmos_cmos = _pmos_conductance_expr(
                 "V(clkbar)", "V(in)", kp=kp, ratio=ratio, vth_p=vth_p, roff=roff

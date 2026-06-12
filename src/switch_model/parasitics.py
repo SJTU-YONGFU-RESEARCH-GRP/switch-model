@@ -39,7 +39,12 @@ def charge_injection(cfg: SwitchConfig) -> ChargeInjectionMetrics:
     cgd = cfg.cgd_f
     split = cfg.dummy_charge_split
     q_no_dummy = (cgs + cgd) * dv
-    if cfg.switch_type in (SwitchType.NMOS_DUMMY, SwitchType.BS_DUMMY):
+    if cfg.switch_type in (
+        SwitchType.NMOS_DUMMY,
+        SwitchType.PMOS_DUMMY,
+        SwitchType.CMOS_DUMMY,
+        SwitchType.BS_DUMMY,
+    ):
         # Dummy steers a fraction of channel charge away from the signal node.
         q_total = q_no_dummy * (1.0 - split)
         reduction = 100.0 * split if q_no_dummy > 0.0 else 0.0

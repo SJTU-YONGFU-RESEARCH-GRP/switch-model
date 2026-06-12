@@ -12,7 +12,7 @@ The paper is included under [docs/](docs/Flicker_Noise_Analysis_on_Chopper_Ampli
 
 | Area | What is included |
 | --- | --- |
-| **Switch types** | NMOS, PMOS, CMOS (TG), NMOS+dummy, bootstrapped (BS), BS+dummy |
+| **Switch types** | NMOS, PMOS, CMOS (TG), NMOS/PMOS/CMOS+dummy, bootstrapped (BS), BS+dummy |
 | **Non-idealities** | Signal-dependent Ron, thermal + flicker noise, charge injection, clock feedthrough |
 | **Engines** | `python` (full), `ngspice` (behavioral SPICE, same Ron equations), `spectre` (Verilog-A) |
 | **Benches** | Ron sweep, noise spectrum, parasitics, cross-type comparison |
@@ -35,7 +35,7 @@ python scripts/run_ron.py --switch-type nmos --output-dir outputs/python/nmos
 # Bootstrapped switch noise
 python scripts/run_noise.py --switch-type bs --output-dir outputs/python/bs
 
-# Compare all six topologies
+# Compare all eight topologies
 python scripts/run_compare_switches.py
 
 # Run all engines (python + ngspice + spectre) and compare

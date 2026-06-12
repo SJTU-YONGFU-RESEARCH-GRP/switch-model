@@ -1,0 +1,14 @@
+// CMOS transmission gate with dummy devices on both branches.
+
+`include "configurable_switch.va"
+
+module configurable_cmos_dummy_switch(in, out, clk, clk_bar, vdd, vss);
+
+    inout in, out, clk, clk_bar, vdd, vss;
+    electrical in, out, clk, clk_bar, vdd, vss;
+
+    configurable_switch #(.SWITCH_KIND(7)) sw (
+        .in(in), .out(out), .clk(clk), .clk_bar(clk_bar), .vdd(vdd), .vss(vss)
+    );
+
+endmodule

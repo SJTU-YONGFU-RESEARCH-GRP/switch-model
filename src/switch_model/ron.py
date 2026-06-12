@@ -72,9 +72,9 @@ def switch_ron(v_in: float, v_clk: float, cfg: SwitchConfig) -> float:
     match cfg.switch_type:
         case SwitchType.NMOS | SwitchType.NMOS_DUMMY:
             return nmos_ron(v_in, v_clk, cfg)
-        case SwitchType.PMOS:
+        case SwitchType.PMOS | SwitchType.PMOS_DUMMY:
             return pmos_ron(v_in, v_clk, cfg)
-        case SwitchType.CMOS:
+        case SwitchType.CMOS | SwitchType.CMOS_DUMMY:
             return cmos_ron(v_in, v_clk, cfg)
         case SwitchType.BS | SwitchType.BS_DUMMY:
             return bs_ron(v_in, v_clk, cfg)

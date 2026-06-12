@@ -14,6 +14,8 @@ def test_veriloga_modules_exist() -> None:
         "configurable_pmos_switch.va",
         "configurable_cmos_switch.va",
         "configurable_nmos_dummy_switch.va",
+        "configurable_pmos_dummy_switch.va",
+        "configurable_cmos_dummy_switch.va",
         "configurable_bs_switch.va",
         "configurable_bs_dummy_switch.va",
     ]

@@ -28,6 +28,8 @@ Deep modeling reference for **switch-model**, aligned with Zhou et al., *Flicker
 | PMOS | `pmos` | — | P-type switch (complementary drive) |
 | CMOS | `cmos` | TG | Transmission gate (NMOS \|\| PMOS) |
 | NMOS dummy | `nmos_dummy` | NS-D | NMOS with dummy for charge steering |
+| PMOS dummy | `pmos_dummy` | PMOS-D | PMOS with symmetric dummy devices |
+| CMOS dummy | `cmos_dummy` | TG-D | Transmission gate with dummy devices |
 | Bootstrapped | `bs` | BS | Constant Ron (bootstrap) |
 | BS dummy | `bs_dummy` | BS + dummy | Bootstrapped with dummy switch |
 
@@ -85,11 +87,13 @@ Implementation: `src/switch_model/parasitics.py`.
 
 | Module | Path | SWITCH_KIND |
 | --- | --- | --- |
-| Base | `veriloga/configurable_switch.va` | 0–5 parameter |
+| Base | `veriloga/configurable_switch.va` | 0–7 parameter |
 | NMOS | `veriloga/configurable_nmos_switch.va` | 0 |
 | PMOS | `veriloga/configurable_pmos_switch.va` | 1 |
 | CMOS (TG) | `veriloga/configurable_cmos_switch.va` | 2 |
 | NMOS dummy | `veriloga/configurable_nmos_dummy_switch.va` | 3 |
+| PMOS dummy | `veriloga/configurable_pmos_dummy_switch.va` | 6 |
+| CMOS dummy | `veriloga/configurable_cmos_dummy_switch.va` | 7 |
 | BS | `veriloga/configurable_bs_switch.va` | 4 |
 | BS dummy | `veriloga/configurable_bs_dummy_switch.va` | 5 |
 
